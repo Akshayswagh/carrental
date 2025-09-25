@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shrinath Bikes Rental - Pricing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            text-decoration: none;
+            color: #333;
+        }
+        
+        .logo span {
+            color: #ff6b00;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 25px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: #ff6b00;
+        }
+        
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: flex-end;
+            padding: 100px 0 50px;
+            margin-top: 70px;
+            color: white;
+        }
+        
+        .hero-content h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            list-style: none;
+        }
+        
+        .breadcrumb li {
+            margin-right: 10px;
+        }
+        
+        .breadcrumb li:after {
+            content: ">";
+            margin-left: 10px;
+        }
+        
+        .breadcrumb li:last-child:after {
+            content: "";
+        }
+        
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        /* Pricing Section */
+        .pricing-section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .category-heading {
+            background-color: #ff6b00;
+            color: white;
+            padding: 15px 20px;
+            font-size: 22px;
+            font-weight: 600;
+            margin: 40px 0 20px;
+            border-radius: 5px;
+        }
+        
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .pricing-table thead {
+            background-color: #333;
+            color: white;
+        }
+        
+        .pricing-table th {
+            padding: 20px 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .pricing-table td {
+            padding: 20px 15px;
+            border-bottom: 1px solid #eee;
+            text-align: center;
+            vertical-align: middle;
+        }
+        
+        .pricing-table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .pricing-table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .bike-image {
+            width: 150px;
+            height: 100px;
+            border-radius: 5px;
+            background-size: cover;
+            background-position: center;
+            margin: 0 auto;
+        }
+        
+        .bike-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .price {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ff6b00;
+        }
+        
+        .price-duration {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .rent-btn {
+            display: inline-block;
+            background-color: #ff6b00;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .rent-btn:hover {
+            background-color: #e55d00;
+        }
+        
+        /* Mobile Cards */
+        .mobile-cards {
+            display: none;
+        }
+        
+        .bike-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .card-image {
+            width: 100px;
+            height: 70px;
+            border-radius: 5px;
+            background-size: cover;
+            background-position: center;
+            margin-right: 15px;
+        }
+        
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .card-body {
+            padding: 15px;
+        }
+        
+        .card-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .price-info {
+            font-size: 20px;
+            font-weight: 700;
+            color: #ff6b00;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: #aaa;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+            padding: 0 15px;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: #ff6b00;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #ff6b00;
+        }
+        
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info i {
+            margin-right: 10px;
+            color: #ff6b00;
+            margin-top: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: #333;
+            color: white;
+            border-radius: 50%;
+            margin-right: 10px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: #ff6b00;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #333;
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .pricing-table {
+                display: none;
+            }
+            
+            .mobile-cards {
+                display: block;
+            }
+            
+            .hero-content h1 {
+                font-size: 36px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                padding: 20px 0;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 0;
+                text-align: center;
+                padding: 10px 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .hero {
+                height: 300px;
+                padding: 80px 0 30px;
+            }
+            
+            .hero-content h1 {
+                font-size: 28px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+            
+            .category-heading {
+                font-size: 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .footer-column {
+                min-width: 100%;
+            }
+            
+            .card-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .card-image {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .card-price {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .rent-btn {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">Shrinath <span>Bikes</span></a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="pricing.html" class="active">Pricing</a></li>
+                   
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Our Pricing</h1>
+                <ul class="breadcrumb">
+                    <li><a href="index.html">Home</a></li>
+                    <li>Pricing</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Bike Rental Rates</h2>
+                <p>All rates are for 12-hour rentals. Additional charges may apply for extra hours.</p>
+            </div>
+
+            <!-- Scooters Section -->
+            <div class="category-heading">Scooters</div>
+            
+            <!-- Desktop Table -->
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th>Bike Model</th>
+                        <th>12-Hour Rate</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="bike-image" style="background-image: url('https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                            <div class="bike-name">Plesser Scooter</div>
+                        </td>
+                        <td>
+                            <div class="price">₹500</div>
+                            <div class="price-duration">for 12 hours</div>
+                        </td>
+                        <td><a href="#" class="rent-btn">Rent Now</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="bike-image" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                            <div class="bike-name">Honda Aviator</div>
+                        </td>
+                        <td>
+                            <div class="price">₹500</div>
+                            <div class="price-duration">for 12 hours</div>
+                        </td>
+                        <td><a href="#" class="rent-btn">Rent Now</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="bike-image" style="background-image: url('https://images.unsplash.com/photo-1609630875171-b1321377ee65?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                            <div class="bike-name">Honda Activa 6G</div>
+                        </td>
+                        <td>
+                            <div class="price">₹500</div>
+                            <div class="price-duration">for 12 hours</div>
+                        </td>
+                        <td><a href="#" class="rent-btn">Rent Now</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="bike-image" style="background-image: url('https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                            <div class="bike-name">TVS Ntorq</div>
+                        </td>
+                        <td>
+                            <div class="price">₹500</div>
+                            <div class="price-duration">for 12 hours</div>
+                        </td>
+                        <td><a href="#" class="rent-btn">Rent Now</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="bike-image" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                            <div class="bike-name">TVS Jupiter</div>
+                        </td>
+                        <td>
+                            <div class="price">₹500</div>
+                            <div class="price-duration">for 12 hours</div>
+                        </td>
+                        <td><a href="#" class="rent-btn">Rent Now</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="bike-image" style="background-image: url('https://images.unsplash.com/photo-1609630875171-b1321377ee65?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                            <div class="bike-name">Hero Xoom</div>
+                        </td>
+                        <td>
+                            <div class="price">₹500</div>
+                            <div class="price-duration">for 12 hours</div>
+                        </td>
+                        <td><a href="#" class="rent-btn">Rent Now</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="bike-image" style="background-image: url('https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                            <div class="bike-name">Honda Dio</div>
+                        </td>
+                        <td>
+                            <div class="price">₹800</div>
+                            <div class="price-duration">for 12 hours</div>
+                        </td>
+                        <td><a href="#" class="rent-btn">Rent Now</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="bike-image" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                            <div class="bike-name">Hero Destiny</div>
+                        </td>
+                        <td>
+                            <div class="price">₹800</div>
+                            <div class="price-duration">for 12 hours</div>
+                        </td>
+                        <td><a href="#" class="rent-btn">Rent Now</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="bike-image" style="background-image: url('https://images.unsplash.com/photo-1609630875171-b1321377ee65?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                            <div class="bike-name">Hero Xoom 125</div>
+                        </td>
+                        <td>
+                            <div class="price">₹800</div>
+                            <div class="price-duration">for 12 hours</div>
+                        </td>
+                        <td><a href="#" class="rent-btn">Rent Now</a></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Mobile Cards for Scooters -->
+            <div class="mobile-cards">
+                <div class="bike-card">
+                    <div class="card-header">
+                        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                        <div class="card-title">Plesser Scooter</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-price">
+                            <div class="price-info">₹500 <span class="price-duration">for 12 hours</span></div>
+                            <a href="#" class="rent-btn">Rent Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bike-card">
+                    <div class="card-header">
+                        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                        <div class="card-title">Honda Aviator</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-price">
+                            <div class="price-info">₹500 <span class="price-duration">for 12 hours</span></div>
+                            <a href="#" class="rent-btn">Rent Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bike-card">
+                    <div class="card-header">
+                        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1609630875171-b1321377ee65?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                        <div class="card-title">Honda Activa 6G</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-price">
+                            <div class="price-info">₹500 <span class="price-duration">for 12 hours</span></div>
+                            <a href="#" class="rent-btn">Rent Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bike-card">
+                    <div class="card-header">
+                        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                        <div class="card-title">TVS Ntorq</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-price">
+                            <div class="price-info">₹500 <span class="price-duration">for 12 hours</span></div>
+                            <a href="#" class="rent-btn">Rent Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bike-card">
+                    <div class="card-header">
+                        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                        <div class="card-title">TVS Jupiter</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-price">
+                            <div class="price-info">₹500 <span class="price-duration">for 12 hours</span></div>
+                            <a href="#" class="rent-btn">Rent Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bike-card">
+                    <div class="card-header">
+                        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1609630875171-b1321377ee65?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                        <div class="card-title">Hero Xoom</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-price">
+                            <div class="price-info">₹500 <span class="price-duration">for 12 hours</span></div>
+                            <a href="#" class="rent-btn">Rent Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bike-card">
+                    <div class="card-header">
+                        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                        <div class="card-title">Honda Dio</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-price">
+                            <div class="price-info">₹800 <span class="price-duration">for 12 hours</span></div>
+                            <a href="#" class="rent-btn">Rent Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bike-card">
+                    <div class="card-header">
+                        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                        <div class="card-title">Hero Destiny</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-price">
+                            <div class="price-info">₹800 <span class="price-duration">for 12 hours</span></div>
+                            <a href="#" class="rent-btn">Rent Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bike-card">
+                    <div class="card-header">
+                        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1609630875171-b1321377ee65?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                        <div class="card-title">Hero Xoom 125</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-price">
+                            <div class="price-info">₹800 <span class="price-duration">for 12 hours</span></div>
+                            <a href="#" class="rent-btn">Rent Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bikes Section -->
+            <div class="category-heading">Bikes</div>
+            
+            <!-- Desktop Table -->
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th>Bike Model</th>
+                        <th>12-Hour Rate</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="bike-image" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                            <div class="bike-name">Hero Glamour</div>
+                        </td>
+                        <td>
+                            <div class="price">₹800</div>
+                            <div class="price-duration">for 12 hours</div>
+                        </td>
+                        <td><a href="#" class="rent-btn">Rent Now</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="bike-image" style="background-image: url('https://images.unsplash.com/photo-1609630875171-b1321377ee65?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                            <div class="bike-name">TVS Apache</div>
+                        </td>
+                        <td>
+                            <div class="price">₹1000</div>
+                            <div class="price-duration">for 12 hours</div>
+                        </td>
+                        <td><a href="#" class="rent-btn">Rent Now</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="bike-image" style="background-image: url('https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                            <div class="bike-name">Bajaj Avenger</div>
+                        </td>
+                        <td>
+                            <div class="price">₹1000</div>
+                            <div class="price-duration">for 12 hours</div>
+                        </td>
+                        <td><a href="#" class="rent-btn">Rent Now</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="bike-image" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                            <div class="bike-name">Royal Enfield Bullet</div>
+                        </td>
+                        <td>
+                            <div class="price">₹1200</div>
+                            <div class="price-duration">for 12 hours</div>
+                        </td>
+                        <td><a href="#" class="rent-btn">Rent Now</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="bike-image" style="background-image: url('https://images.unsplash.com/photo-1609630875171-b1321377ee65?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                            <div class="bike-name">Jawa Classic</div>
+                        </td>
+                        <td>
+                            <div class="price">₹1200</div>
+                            <div class="price-duration">for 12 hours</div>
+                        </td>
+                        <td><a href="#" class="rent-btn">Rent Now</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="bike-image" style="background-image: url('https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                            <div class="bike-name">Royal Enfield Himalayan</div>
+                        </td>
+                        <td>
+                            <div class="price">₹1200</div>
+                            <div class="price-duration">for 12 hours</div>
+                        </td>
+                        <td><a href="#" class="rent-btn">Rent Now</a></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Mobile Cards for Bikes -->
+            <div class="mobile-cards">
+                <div class="bike-card">
+                    <div class="card-header">
+                        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                        <div class="card-title">Hero Glamour</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-price">
+                            <div class="price-info">₹800 <span class="price-duration">for 12 hours</span></div>
+                            <a href="#" class="rent-btn">Rent Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bike-card">
+                    <div class="card-header">
+                        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1609630875171-b1321377ee65?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                        <div class="card-title">TVS Apache</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-price">
+                            <div class="price-info">₹1000 <span class="price-duration">for 12 hours</span></div>
+                            <a href="#" class="rent-btn">Rent Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bike-card">
+                    <div class="card-header">
+                        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                        <div class="card-title">Bajaj Avenger</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-price">
+                            <div class="price-info">₹1000 <span class="price-duration">for 12 hours</span></div>
+                            <a href="#" class="rent-btn">Rent Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bike-card">
+                    <div class="card-header">
+                        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                        <div class="card-title">Royal Enfield Bullet</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-price">
+                            <div class="price-info">₹1200 <span class="price-duration">for 12 hours</span></div>
+                            <a href="#" class="rent-btn">Rent Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bike-card">
+                    <div class="card-header">
+                        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1609630875171-b1321377ee65?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                        <div class="card-title">Jawa Classic</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-price">
+                            <div class="price-info">₹1200 <span class="price-duration">for 12 hours</span></div>
+                            <a href="#" class="rent-btn">Rent Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bike-card">
+                    <div class="card-header">
+                        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')"></div>
+                        <div class="card-title">Royal Enfield Himalayan</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-price">
+                            <div class="price-info">₹1200 <span class="price-duration">for 12 hours</span></div>
+                            <a href="#" class="rent-btn">Rent Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Shrinath Bikes</h3>
+                    <p>Your trusted partner for bike rentals in Ratnagiri. We offer a wide range of scooters and bikes for your travel needs.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="bikes.html">Our Bikes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Ratnagiri, Maharashtra, India</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+91 98765 43210</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@shrinathbikes.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Shrinath Bikes Rental. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
