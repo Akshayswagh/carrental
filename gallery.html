@@ -1,234 +1,440 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gallery - Shrinath Bikes Rental</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery - Shrinath Bikes Rental</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"
+    />
+
+    <style>
+
+
+
+/* coming soon */
+   /* Coming Soon Section Styles */
+        .coming-soon-section {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            max-width: 700px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            position: relative;
+            overflow: hidden;
+            margin: 8rem auto;
+        }
+        
+        .coming-soon-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .coming-soon-title {
+            font-size: 3.2rem;
+            margin-bottom: 25px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.2s forwards;
+        }
+        
+        .coming-soon-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+        
+        .coming-soon-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 40px;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.8s forwards;
+        }
+        
+      
+        
+
+        
+     
+        /* Floating animation elements */
+        .floating-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 15s infinite linear;
+        }
+        
+        .circle-1 {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .circle-2 {
+            width: 120px;
+            height: 120px;
+            bottom: 15%;
+            right: 10%;
+            animation-delay: -5s;
+        }
+        
+        .circle-3 {
+            width: 60px;
+            height: 60px;
+            top: 60%;
+            left: 15%;
+            animation-delay: -10s;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            33% {
+                transform: translateY(-20px) rotate(120deg);
+            }
+            66% {
+                transform: translateY(10px) rotate(240deg);
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+            }
+        }
+        
+        /* Pulse animation for title */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
+            }
+            100% {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .coming-soon-title {
+                font-size: 2.5rem;
+            }
+            
+            .coming-soon-subtitle {
+                font-size: 1.3rem;
+            }
+            
+           
+            
+           
+            
+            .floating-circle {
+                display: none;
+            }
+        }
+  /* coming soon end */
   
-  <style>
-    .whatsapp-float {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 999;
-}
+  
+        .whatsapp-float {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 999;
+      }
 
-.whatsapp-icon {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
-}
+      .whatsapp-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+      }
 
-.whatsapp-icon:hover {
-  transform: scale(1.1);
-}
+      .whatsapp-icon:hover {
+        transform: scale(1.1);
+      }
 
-    :root {
-      --primary-color: #FCC802;
-      --secondary-color: #1a1a1a;
-      --light-color: #f8f9fa;
-    }
+      :root {
+        --primary-color: #fcc802;
+        --secondary-color: #1a1a1a;
+        --light-color: #f8f9fa;
+      }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-    body {
-      font-family: "Poppins", sans-serif;
-      line-height: 1.6;
-      color: #333;
-      overflow-x: hidden;
-    }
+      body {
+        font-family: "Poppins", sans-serif;
+        line-height: 1.6;
+        color: #333;
+        overflow-x: hidden;
+      }
 
-    h1, h2, h3, h4, h5, h6 {
-      font-weight: 600;
-    }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-weight: 600;
+      }
 
-    /* Navbar */
-    .navbar {
-      padding: 15px 0;
-      background-color: #fff;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 1000;
-      transition: all 0.3s;
-    }
+      /* Navbar */
+      .navbar {
+        padding: 15px 0;
+        background-color: #fff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        transition: all 0.3s;
+      }
 
-    .navbar-brand img {
-      max-height: 60px;
-    }
+      .navbar-brand img {
+        max-height: 60px;
+      }
 
-    .nav-link {
-      font-weight: 500;
-      margin: 0 10px;
-      color: #333 !important;
-      transition: color 0.3s;
-    }
+      .nav-link {
+        font-weight: 500;
+        margin: 0 10px;
+        color: #333 !important;
+        transition: color 0.3s;
+      }
 
-    .nav-link:hover,
-    .nav-link.active {
-      color: var(--primary-color) !important;
-    }
+      .nav-link:hover,
+      .nav-link.active {
+        color: var(--primary-color) !important;
+      }
 
-    /* Gallery */
-    .gallery-section {
-      padding: 100px 0;
-      background-color: var(--light-color);
-      margin-top: 76px;
-    }
+      /* Gallery */
+      .gallery-section {
+        padding: 100px 0;
+        background-color: var(--light-color);
+        margin-top: 76px;
+      }
 
-    .gallery-section h2 {
-      font-size: 36px;
-      margin-bottom: 15px;
-      color: #333;
-    }
+      .gallery-section h2 {
+        font-size: 36px;
+        margin-bottom: 15px;
+        color: #333;
+      }
 
-    .gallery-section p {
-      color: #666;
-      max-width: 600px;
-      margin: 0 auto 40px;
-    }
+      .gallery-section p {
+        color: #666;
+        max-width: 600px;
+        margin: 0 auto 40px;
+      }
 
-    .gallery-section img {
-     width: 100%;
-     height: 500px; /* set desired uniform height */
-     object-fit: cover; /* crop image nicely without stretching */
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-}
-   .gallery-section img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-}
-    /* Footer */
-    footer {
-      background-color: #1a1a1a;
-      color: #aaa;
-      padding: 80px 0 30px;
-    }
+      .gallery-section img {
+        width: 100%;
+        height: 500px; /* set desired uniform height */
+        object-fit: cover; /* crop image nicely without stretching */
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      .gallery-section img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
+      /* Footer */
+      footer {
+        background-color: #1a1a1a;
+        color: #aaa;
+        padding: 80px 0 30px;
+      }
 
-    .footer-column h3 {
-      color: white;
-      margin-bottom: 25px;
-      font-size: 20px;
-      position: relative;
-      padding-bottom: 10px;
-    }
+      .footer-column h3 {
+        color: white;
+        margin-bottom: 25px;
+        font-size: 20px;
+        position: relative;
+        padding-bottom: 10px;
+      }
 
-    .footer-column h3:after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 40px;
-      height: 2px;
-      background-color: var(--primary-color);
-    }
+      .footer-column h3:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 40px;
+        height: 2px;
+        background-color: var(--primary-color);
+      }
 
-    .footer-column ul {
-      list-style: none;
-      padding: 0;
-    }
+      .footer-column ul {
+        list-style: none;
+        padding: 0;
+      }
 
-    .footer-column ul li {
-      margin-bottom: 10px;
-    }
+      .footer-column ul li {
+        margin-bottom: 10px;
+      }
 
-    .footer-column ul li a {
-      color: #aaa;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
+      .footer-column ul li a {
+        color: #aaa;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
 
-    .footer-column ul li a:hover {
-      color: var(--primary-color);
-    }
+      .footer-column ul li a:hover {
+        color: var(--primary-color);
+      }
 
-    .contact-info li {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 15px;
-    }
+      .contact-info li {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 15px;
+      }
 
-    .contact-info i {
-      margin-right: 10px;
-      color: var(--primary-color);
-      margin-top: 5px;
-    }
+      .contact-info i {
+        margin-right: 10px;
+        color: var(--primary-color);
+        margin-top: 5px;
+      }
 
-    .social-links {
-      display: flex;
-      margin-top: 20px;
-    }
+      .social-links {
+        display: flex;
+        margin-top: 20px;
+      }
 
-    .social-links a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      background-color: #333;
-      color: white;
-      border-radius: 50%;
-      margin-right: 10px;
-      text-decoration: none;
-      transition: background-color 0.3s;
-    }
+      .social-links a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: #333;
+        color: white;
+        border-radius: 50%;
+        margin-right: 10px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+      }
 
-    .social-links a:hover {
-      background-color: var(--primary-color);
-    }
+      .social-links a:hover {
+        background-color: var(--primary-color);
+      }
 
-    .copyright {
-      text-align: center;
-      padding-top: 30px;
-      margin-top: 30px;
-      border-top: 1px solid #333;
-      font-size: 14px;
-    }
-  </style>
-</head>
-<body>
-  <!-- Header -->
-  <header>
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="container">
-        <a class="navbar-brand" href="index.html">
-          <img src="images/Log.png" alt="Shrinath Bikes Rental" />
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#services">Services</a></li>
-            <li class="nav-item"><a class="nav-link" href="pricing.html">Bikes</a></li>
-            <li class="nav-item"><a class="nav-link active" href="gallery.html">Gallery</a></li>
-            <li class="nav-item">
+      .copyright {
+        text-align: center;
+        padding-top: 30px;
+        margin-top: 30px;
+        border-top: 1px solid #333;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class="navbar-brand" href="index.html">
+            <img src="images/Log.png" alt="Shrinath Bikes Rental" />
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="index.html#about">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="index.html#services">Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="pricing.html">Bikes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="gallery.html">Gallery</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="terms.html">Terms</a>
               </li>
 
-            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-          </ul>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact</a>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </nav>
-  </header>
+      </nav>
+    </header>
 
-  <!-- Gallery Section -->
-  <section class="gallery-section">
+    <!-- coming soon -->
+    <!-- This is the standalone coming soon section -->
+    <section class="coming-soon-section d-flex justify-content-center align-items-center text-center position-relative">
+      <!-- Floating background elements -->
+      <div class="floating-circle circle-1"></div>
+      <div class="floating-circle circle-2"></div>
+      <div class="floating-circle circle-3"></div>
+
+      <div class="coming-soon-content">
+        <h1 class="coming-soon-title ">Coming Soon</h1>
+        <h2 class="coming-soon-subtitle">We're crafting something amazing</h2>
+        <p class="coming-soon-description">
+          Our team is working hard to bring you an incredible new experience.
+          Stay tuned for updates and be the first to know when we launch!
+        </p>
+      </div>
+    </section>
+
+    <!-- coming soon end -->
+
+    <!-- Gallery Section -->
+    <!-- <section class="gallery-section">
     <div class="container">
       <div class="section-title text-center">
         <h2>Our Gallery</h2>
@@ -273,57 +479,65 @@
       </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4 col-md-6">
-          <div class="footer-column">
-            <h3>Shrinath Bikes</h3>
-            <p>Your trusted partner for bike rentals in Ratnagiri.</p>
-            <div class="social-links">
-              <a href="#"><i class="fab fa-facebook-f"></i></a>
-              <a href="#"><i class="fab fa-instagram"></i></a>
-              <a href="#"><i class="fab fa-youtube"></i></a>
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <div class="footer-column">
+              <h3>Shrinath Bikes</h3>
+              <p>Your trusted partner for bike rentals in Ratnagiri.</p>
+              <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-6">
+            <div class="footer-column">
+              <h3>Quick Links</h3>
+              <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About Us</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="pricing.html">Bikes</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-column">
+              <h3>Support</h3>
+              <ul>
+                <li><a href="terms.html">Terms & Conditions</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-column">
+              <h3>Contact Info</h3>
+              <ul class="contact-info">
+                <li>
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span>Ratnagiri, Maharashtra, India</span>
+                </li>
+                <li>
+                  <i class="fas fa-phone"></i> <span>+91 7276726689</span>
+                </li>
+                <li>
+                  <i class="fas fa-envelope"></i>
+                  <span>info@shrinathbikes.com</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
-        <div class="col-lg-2 col-md-6">
-          <div class="footer-column">
-            <h3>Quick Links</h3>
-            <ul>
-              <li><a href="index.html">Home</a></li>
-              <li><a href="index.html#about">About Us</a></li>
-              <li><a href="index.html#services">Services</a></li>
-              <li><a href="pricing.html">Bikes</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-          <div class="footer-column">
-            <h3>Support</h3>
-            <ul>
-              <li><a href="terms.html">Terms & Conditions</a></li>
-              <li><a href="contact.html">Contact Us</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-          <div class="footer-column">
-            <h3>Contact Info</h3>
-            <ul class="contact-info">
-              <li><i class="fas fa-map-marker-alt"></i> <span>Ratnagiri, Maharashtra, India</span></li>
-              <li><i class="fas fa-phone"></i> <span>+91 7276726689</span></li>
-              <li><i class="fas fa-envelope"></i> <span>info@shrinathbikes.com</span></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="copyright">
-        <p>&copy; 2025 Shrinath Bikes Rental. All rights reserved.</p>
-        <p>
+        <div class="copyright">
+          <p>&copy; 2025 Shrinath Bikes Rental. All rights reserved.</p>
+          <p>
             Developed by
             <a
               style="text-decoration: none; color: #fcc802"
@@ -331,13 +545,22 @@
               >GPT Software</a
             >
           </p>
+        </div>
       </div>
-    </div>
-  </footer>
-<a href="https://wa.me/917276726689" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
-</a>
+    </footer>
+    <a
+      href="https://wa.me/917276726689"
+      class="whatsapp-float"
+      target="_blank"
+      aria-label="Chat on WhatsApp"
+    >
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+        alt="WhatsApp"
+        class="whatsapp-icon"
+      />
+    </a>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
-</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
