@@ -316,6 +316,46 @@
             text-align: left;
         }
         
+        /* Payment Method Styles */
+        .payment-method {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .payment-option {
+            flex: 1;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .payment-option:hover {
+            border-color: var(--primary);
+        }
+        
+        .payment-option.selected {
+            border-color: var(--primary);
+            background-color: rgba(252, 200, 2, 0.1);
+        }
+        
+        .payment-option i {
+            font-size: 24px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .cash-payment-info {
+            background-color: #e9f7fe;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
         /* Loading Spinner */
         .spinner-border {
             width: 1.5rem;
@@ -417,6 +457,10 @@
             
             .booking-form, .payment-section {
                 padding: 20px;
+            }
+            
+            .payment-method {
+                flex-direction: column;
             }
         }
         
@@ -919,46 +963,88 @@
                             </div>
                         </div>
                         
-                        <div class="qr-payment-container">
-                            <h4>Scan to Pay</h4>
-                            <div class="qr-code">
-                                <!-- In a real implementation, this would be a dynamic QR code -->
-                              <div class="d-flex justify-content-center align-items-center text-center" style="height: 200px;">
+                        <!-- Payment Method Selection -->
+                        <div class="payment-method">
+                            <div class="payment-option" id="upiOption" data-payment-type="upi">
+                                <i class="fas fa-qrcode"></i>
+                                <h5>UPI Payment</h5>
+                                <p>Pay online now</p>
+                            </div>
+                            <div class="payment-option" id="cashOption" data-payment-type="cash">
+                                <i class="fas fa-money-bill-wave"></i>
+                                <h5>Cash Payment</h5>
+                                <p>Pay at pickup</p>
+                            </div>
+                        </div>
+                        
+                        <!-- UPI Payment Section -->
+                        <div class="upi-payment-section" id="upiPaymentSection">
+                            <div class="qr-payment-container">
+                                <h4>Scan to Pay</h4>
+                                <div class="qr-code">
+                                    <!-- In a real implementation, this would be a dynamic QR code -->
+                                  <div class="d-flex justify-content-center align-items-center text-center" style="height: 200px;">
   <img src="payment scanner.png" alt="QR Code for payment" class="img-fluid" style="max-width: 188px;">
 </div>
 
+                                </div>
+                                <div class="payment-amount" id="paymentAmount">₹1000</div>
+                                <p class="text-muted">Scan this QR code with any UPI app to complete your payment</p>
                             </div>
-                            <div class="payment-amount" id="paymentAmount">₹1000</div>
-                            <p class="text-muted">Scan this QR code with any UPI app to complete your payment</p>
+                            
+                            <div class="payment-instructions">
+                                <h6><i class="fas fa-info-circle me-2"></i>Payment Instructions:</h6>
+                                <ol>
+                                    <li>Open any UPI app on your phone (Google Pay, PhonePe, Paytm, etc.)</li>
+                                    <li>Tap on "Scan QR Code"</li>
+                                    <li>Scan the QR code shown above</li>
+                                    <li>Enter the amount shown and complete the payment</li>
+                                    <li>After successful payment, note down the UTR number</li>
+                                    <li>Enter the UTR number in the field below and confirm payment</li>
+                                </ol>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="utrNumber" class="form-label">UTR Number *</label>
+                                <input type="text" class="form-control" id="utrNumber" placeholder="Enter UTR number from your payment" required>
+                                <div class="invalid-feedback">
+                                    Please provide the UTR number from your payment.
+                                </div>
+                                <small class="form-text text-muted">
+                                    UTR (Unique Transaction Reference) number is provided after successful payment
+                                </small>
+                            </div>
                         </div>
                         
-                        <div class="payment-instructions">
-                            <h6><i class="fas fa-info-circle me-2"></i>Payment Instructions:</h6>
-                            <ol>
-                                <li>Open any UPI app on your phone (Google Pay, PhonePe, Paytm, etc.)</li>
-                                <li>Tap on "Scan QR Code"</li>
-                                <li>Scan the QR code shown above</li>
-                                <li>Enter the amount shown and complete the payment</li>
-                                <li>After successful payment, note down the UTR number</li>
-                                <li>Enter the UTR number in the field below and confirm payment</li>
-                            </ol>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="utrNumber" class="form-label">UTR Number *</label>
-                            <input type="text" class="form-control" id="utrNumber" placeholder="Enter UTR number from your payment" required>
-                            <div class="invalid-feedback">
-                                Please provide the UTR number from your payment.
+                        <!-- Cash Payment Section -->
+                        <div class="cash-payment-section" id="cashPaymentSection" style="display: none;">
+                            <div class="cash-payment-info">
+                                <h6><i class="fas fa-info-circle me-2"></i>Cash Payment Instructions:</h6>
+                                <ul class="mb-0">
+                                    <li>You have selected cash payment option</li>
+                                    <li>Please bring the total amount in cash at the time of bike pickup</li>
+                                    <li>Your booking is confirmed and we will hold the bike for you</li>
+                                    <li>Please arrive on time for your pickup</li>
+                                    <li>Bring your original ID proof for verification</li>
+                                </ul>
                             </div>
-                            <small class="form-text text-muted">
-                                UTR (Unique Transaction Reference) number is provided after successful payment
-                            </small>
+                            
+                            <div class="form-group">
+                                <label for="pickupTime" class="form-label">Preferred Pickup Time *</label>
+                                <input type="time" class="form-control" id="pickupTime" min="08:00" max="20:00" required>
+                                <div class="invalid-feedback">
+                                    Please select a valid pickup time between 8:00 AM and 8:00 PM.
+                                </div>
+                                <small class="form-text text-muted">
+                                    Please select your preferred pickup time. We'll do our best to accommodate your request.
+                                </small>
+                            </div>
                         </div>
                         
                         <div class="text-center mt-4">
                             <button type="button" class="btn btn-primary btn-lg" id="confirmPayment">
                                 <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
-                                Confirm Payment
+                                <span id="confirmPaymentText">Confirm Payment</span>
                             </button>
                             <button type="button" class="btn btn-outline-secondary btn-lg ms-2" id="backToForm">Back to Form</button>
                         </div>
@@ -1183,6 +1269,7 @@
         const selectedOption = bikeType.options[bikeType.selectedIndex];
         const dailyRate = selectedOption ? selectedOption.getAttribute('data-daily-rate') : '0';
         const helmetRadio = document.querySelector('input[name="helmet"]:checked');
+        const paymentType = document.querySelector('.payment-option.selected').getAttribute('data-payment-type');
         
         // Calculate total rental cost
         const pickupDate = document.getElementById('pickupDate').value;
@@ -1198,7 +1285,7 @@
             totalRentalCost = parseInt(dailyRate) * rentalDays;
         }
         
-        return {
+        const formData = {
             timestamp: new Date().toISOString(),
             fullName: document.getElementById('fullName').value,
             mobileNumber: document.getElementById('mobileNumber').value,
@@ -1214,9 +1301,20 @@
             idProofNumber: document.getElementById('idProofNumber').value,
             dateOfBirth: document.getElementById('dateOfBirth').value,
             helmetRequired: helmetRadio ? helmetRadio.value : 'no',
-            utrNumber: document.getElementById('utrNumber').value,
+            paymentMethod: paymentType,
             status: 'Pending'
         };
+        
+        // Add payment-specific fields
+        if (paymentType === 'upi') {
+            formData.utrNumber = document.getElementById('utrNumber').value;
+            formData.paymentStatus = 'Paid';
+        } else if (paymentType === 'cash') {
+            formData.pickupTime = document.getElementById('pickupTime').value;
+            formData.paymentStatus = 'Pending';
+        }
+        
+        return formData;
     }
 
     // Event listeners
@@ -1231,6 +1329,32 @@
                 console.log('❌ Google Script connection failed');
             }
         });
+        
+        // Payment method selection
+        const paymentOptions = document.querySelectorAll('.payment-option');
+        paymentOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove selected class from all options
+                paymentOptions.forEach(opt => opt.classList.remove('selected'));
+                // Add selected class to clicked option
+                this.classList.add('selected');
+                
+                // Show/hide payment sections based on selection
+                const paymentType = this.getAttribute('data-payment-type');
+                if (paymentType === 'upi') {
+                    document.getElementById('upiPaymentSection').style.display = 'block';
+                    document.getElementById('cashPaymentSection').style.display = 'none';
+                    document.getElementById('confirmPaymentText').textContent = 'Confirm Payment';
+                } else if (paymentType === 'cash') {
+                    document.getElementById('upiPaymentSection').style.display = 'none';
+                    document.getElementById('cashPaymentSection').style.display = 'block';
+                    document.getElementById('confirmPaymentText').textContent = 'Confirm Booking';
+                }
+            });
+        });
+        
+        // Set default payment method
+        document.getElementById('upiOption').classList.add('selected');
         
         // Calculate rental duration when dates change
         document.getElementById('pickupDate').addEventListener('change', calculateRentalDuration);
@@ -1263,15 +1387,27 @@
         
         // Confirm payment button
         document.getElementById('confirmPayment').addEventListener('click', async function() {
-            const utrNumber = document.getElementById('utrNumber');
+            const paymentType = document.querySelector('.payment-option.selected').getAttribute('data-payment-type');
             const confirmBtn = this;
             const spinner = confirmBtn.querySelector('.spinner-border');
             
-            if (!utrNumber.value) {
-                utrNumber.classList.add('is-invalid');
-                return;
-            } else {
-                utrNumber.classList.remove('is-invalid');
+            // Validate payment-specific fields
+            if (paymentType === 'upi') {
+                const utrNumber = document.getElementById('utrNumber');
+                if (!utrNumber.value) {
+                    utrNumber.classList.add('is-invalid');
+                    return;
+                } else {
+                    utrNumber.classList.remove('is-invalid');
+                }
+            } else if (paymentType === 'cash') {
+                const pickupTime = document.getElementById('pickupTime');
+                if (!pickupTime.value) {
+                    pickupTime.classList.add('is-invalid');
+                    return;
+                } else {
+                    pickupTime.classList.remove('is-invalid');
+                }
             }
             
             // Show loading spinner
@@ -1287,7 +1423,12 @@
                 const success = await sendToGoogleSheets(formData);
                 
                 if (success) {
-                    alert('✅ Payment successful! Your booking has been confirmed and data saved to Google Sheets.');
+                    if (paymentType === 'upi') {
+                        alert('✅ Payment successful! Your booking has been confirmed and data saved to Google Sheets.');
+                    } else {
+                        alert('✅ Booking confirmed! Please bring the total amount in cash at the time of bike pickup. Your data has been saved to Google Sheets.');
+                    }
+                    
                     // Reset form
                     document.getElementById('bookingForm').reset();
                     document.getElementById('paymentSection').style.display = 'none';
@@ -1295,7 +1436,11 @@
                     document.getElementById('bookingForm').classList.remove('was-validated');
                     window.scrollTo(0, 0);
                 } else {
-                    alert('⚠️ Payment confirmed but there was an issue saving your data. Please contact support with your UTR number: ' + formData.utrNumber);
+                    if (paymentType === 'upi') {
+                        alert('⚠️ Payment confirmed but there was an issue saving your data. Please contact support with your UTR number: ' + formData.utrNumber);
+                    } else {
+                        alert('⚠️ Booking confirmed but there was an issue saving your data. Please contact support with your booking details.');
+                    }
                 }
             } catch (error) {
                 console.error('Error:', error);
