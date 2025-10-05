@@ -3,10 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shrinath Bikes Rental - Pricing</title>
+    <title>Bikes - Shrinath Bikes Rental</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        .whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+}
+
+.whatsapp-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-icon:hover {
+  transform: scale(1.1);
+}
+
+
         :root {
             --primary: #FCC802;
             --primary-dark: #fff019;
@@ -44,7 +64,6 @@
             height: 400px;
             display: flex;
             align-items: center;
-            /* margin-top: 76px; */
             color: white;
         }
         
@@ -108,10 +127,9 @@
         
         .bike-image {
             height: 200px;
-          background-size: contain;  
+            background-size: contain;  
             background-position: center;
-              background-repeat: no-repeat; 
-
+            background-repeat: no-repeat; 
         }
         
         .bike-info {
@@ -149,6 +167,144 @@
             background-color: var(--primary-dark);
             border-color: var(--primary-dark);
             transform: translateY(-2px);
+        }
+        
+        /* Booking Form Section */
+        .booking-section {
+            background-color: white;
+            padding: 80px 0;
+        }
+        
+        .booking-form {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.2rem rgba(252, 200, 2, 0.25);
+        }
+        
+        .form-check-input:checked {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+        
+        .form-check-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.2rem rgba(252, 200, 2, 0.25);
+        }
+        
+        .invalid-feedback {
+            display: none;
+            width: 100%;
+            margin-top: 0.25rem;
+            font-size: 0.875em;
+            color: #dc3545;
+        }
+        
+        .was-validated .form-control:invalid ~ .invalid-feedback,
+        .was-validated .form-check-input:invalid ~ .invalid-feedback {
+            display: block;
+        }
+        
+        .was-validated .form-control:valid,
+        .was-validated .form-check-input:valid {
+            border-color: #198754;
+        }
+        
+        .payment-section {
+            /* display: none; */
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .qr-payment-container {
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+        
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 20px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        .payment-amount {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .payment-instructions {
+            background-color: #e9f7fe;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .payment-instructions ol {
+            margin-bottom: 0;
+            padding-left: 20px;
+        }
+        
+        .payment-instructions li {
+            margin-bottom: 8px;
+        }
+        
+        .summary-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .summary-total {
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--primary);
+        }
+        
+        /* Loading Spinner */
+        .spinner-border {
+            width: 1.5rem;
+            height: 1.5rem;
         }
         
         /* Footer */
@@ -243,6 +399,10 @@
             .category-heading {
                 font-size: 20px;
             }
+            
+            .booking-form, .payment-section {
+                padding: 20px;
+            }
         }
         
         @media (max-width: 576px) {
@@ -251,6 +411,8 @@
             }
         }
     </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
 </head>
 <body>
     <!-- Header -->
@@ -285,6 +447,10 @@
               <li class="nav-item">
                 <a class="nav-link active" href="pricing.html">Bikes</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="terms.html">Terms</a>
+              </li>
+
               <li class="nav-item">
                 <a class="nav-link" href="contact.html">Contact</a>
               </li>
@@ -336,7 +502,7 @@
                         <div class="bike-info">
                             <h3>Plesser Scooter</h3>
                             <p class="bike-price">₹500 <span>/12 hours</span></p>
-                            <a href="contact.html" class="btn btn-primary">Rent Now</a>
+                            <a href="#booking" class="btn btn-primary">Rent Now</a>
                         </div>
                     </div>
                 </div>
@@ -347,7 +513,7 @@
                         <div class="bike-info">
                             <h3>Honda Aviator</h3>
                             <p class="bike-price">₹500 <span>/12 hours</span></p>
-                            <a href="contact.html" class="btn btn-primary">Rent Now</a>
+                            <a href="#booking" class="btn btn-primary">Rent Now</a>
                         </div>
                     </div>
                 </div>
@@ -358,7 +524,7 @@
                         <div class="bike-info">
                             <h3>Honda Activa 6G</h3>
                             <p class="bike-price">₹500 <span>/12 hours</span></p>
-                            <a href="contact.html" class="btn btn-primary">Rent Now</a>
+                            <a href="#booking" class="btn btn-primary">Rent Now</a>
                         </div>
                     </div>
                 </div>
@@ -369,7 +535,7 @@
                         <div class="bike-info">
                             <h3>TVS Ntorq</h3>
                             <p class="bike-price">₹500 <span>/12 hours</span></p>
-                            <a href="contact.html" class="btn btn-primary">Rent Now</a>
+                            <a href="#booking" class="btn btn-primary">Rent Now</a>
                         </div>
                     </div>
                 </div>
@@ -380,7 +546,7 @@
                         <div class="bike-info">
                             <h3>TVS Jupiter</h3>
                             <p class="bike-price">₹500 <span>/12 hours</span></p>
-                            <a href="contact.html" class="btn btn-primary">Rent Now</a>
+                            <a href="#booking" class="btn btn-primary">Rent Now</a>
                         </div>
                     </div>
                 </div>
@@ -391,7 +557,7 @@
                         <div class="bike-info">
                             <h3>Hero Xoom</h3>
                             <p class="bike-price">₹500 <span>/12 hours</span></p>
-                            <a href="contact.html" class="btn btn-primary">Rent Now</a>
+                            <a href="#booking" class="btn btn-primary">Rent Now</a>
                         </div>
                     </div>
                 </div>
@@ -402,7 +568,7 @@
                         <div class="bike-info">
                             <h3>Honda Dio</h3>
                             <p class="bike-price">₹800 <span>/12 hours</span></p>
-                            <a href="contact.html" class="btn btn-primary">Rent Now</a>
+                            <a href="#booking" class="btn btn-primary">Rent Now</a>
                         </div>
                     </div>
                 </div>
@@ -413,7 +579,7 @@
                         <div class="bike-info">
                             <h3>Hero Destiny</h3>
                             <p class="bike-price">₹800 <span>/12 hours</span></p>
-                            <a href="contact.html" class="btn btn-primary">Rent Now</a>
+                            <a href="#booking" class="btn btn-primary">Rent Now</a>
                         </div>
                     </div>
                 </div>
@@ -424,7 +590,7 @@
                         <div class="bike-info">
                             <h3>Hero Xoom 125</h3>
                             <p class="bike-price">₹800 <span>/12 hours</span></p>
-                            <a href="contact.html" class="btn btn-primary">Rent Now</a>
+                            <a href="#booking" class="btn btn-primary">Rent Now</a>
                         </div>
                     </div>
                 </div>
@@ -440,7 +606,7 @@
                         <div class="bike-info">
                             <h3>Hero Glamour</h3>
                             <p class="bike-price">₹800 <span>/12 hours</span></p>
-                            <a href="contact.html" class="btn btn-primary">Rent Now</a>
+                            <a href="#booking" class="btn btn-primary">Rent Now</a>
                         </div>
                     </div>
                 </div>
@@ -451,7 +617,7 @@
                         <div class="bike-info">
                             <h3>TVS Apache</h3>
                             <p class="bike-price">₹1000 <span>/12 hours</span></p>
-                            <a href="contact.html" class="btn btn-primary">Rent Now</a>
+                            <a href="#booking" class="btn btn-primary">Rent Now</a>
                         </div>
                     </div>
                 </div>
@@ -462,7 +628,7 @@
                         <div class="bike-info">
                             <h3>Bajaj Avenger</h3>
                             <p class="bike-price">₹1000 <span>/12 hours</span></p>
-                            <a href="contact.html" class="btn btn-primary">Rent Now</a>
+                            <a href="#booking" class="btn btn-primary">Rent Now</a>
                         </div>
                     </div>
                 </div>
@@ -473,7 +639,7 @@
                         <div class="bike-info">
                             <h3>Royal Enfield Bullet</h3>
                             <p class="bike-price">₹1200 <span>/12 hours</span></p>
-                            <a href="contact.html" class="btn btn-primary">Rent Now</a>
+                            <a href="#booking" class="btn btn-primary">Rent Now</a>
                         </div>
                     </div>
                 </div>
@@ -484,7 +650,7 @@
                         <div class="bike-info">
                             <h3>Jawa Classic</h3>
                             <p class="bike-price">₹1200 <span>/12 hours</span></p>
-                            <a href="contact.html" class="btn btn-primary">Rent Now</a>
+                            <a href="#booking" class="btn btn-primary">Rent Now</a>
                         </div>
                     </div>
                 </div>
@@ -495,7 +661,270 @@
                         <div class="bike-info">
                             <h3>Royal Enfield Himalayan</h3>
                             <p class="bike-price">₹1200 <span>/12 hours</span></p>
-                            <a href="contact.html" class="btn btn-primary">Rent Now</a>
+                            <a href="#booking" class="btn btn-primary">Rent Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Form Section -->
+    <section class="booking-section" id="booking">
+        <div class="container">
+            <div class="section-title">
+                <h2>Book Your Bike</h2>
+                <p>Fill in the details below to reserve your bike</p>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <form class="booking-form needs-validation" novalidate id="bookingForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="fullName" class="form-label">Full Name *</label>
+                                    <input type="text" class="form-control" id="fullName" required>
+                                    <div class="invalid-feedback">
+                                        Please provide your full name.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="mobileNumber" class="form-label">Mobile Number *</label>
+                                    <input type="tel" class="form-control" id="mobileNumber" pattern="[0-9]{10}" required>
+                                    <div class="invalid-feedback">
+                                        Please provide a valid 10-digit mobile number.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="emailAddress" class="form-label">Email Address *</label>
+                                    <input type="email" class="form-control" id="emailAddress" required>
+                                    <div class="invalid-feedback">
+                                        Please provide a valid email address.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="address" class="form-label">Address (for ID verification) *</label>
+                                    <textarea class="form-control" id="address" rows="2" required></textarea>
+                                    <div class="invalid-feedback">
+                                        Please provide your address for ID verification.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="pickupDate" class="form-label">Pick-up Date & Time *</label>
+                                    <input type="datetime-local" class="form-control" id="pickupDate" required>
+                                    <div class="invalid-feedback">
+                                        Please select a valid pick-up date and time.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="dropoffDate" class="form-label">Drop-off Date & Time *</label>
+                                    <input type="datetime-local" class="form-control" id="dropoffDate" required>
+                                    <div class="invalid-feedback">
+                                        Please select a valid drop-off date and time.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="rentalDuration" class="form-label">Rental Duration</label>
+                                    <input type="text" class="form-control" id="rentalDuration" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="bikeType" class="form-label">Bike Type *</label>
+                                    <select class="form-select" id="bikeType" required>
+                                        <option value="" selected disabled>Select a bike</option>
+                                        <optgroup label="Scooters">
+                                            <option value="Plesser Scooter" data-daily-rate="500">Plesser Scooter - ₹500/day</option>
+                                            <option value="Honda Aviator" data-daily-rate="500">Honda Aviator - ₹500/day</option>
+                                            <option value="Honda Activa 6G" data-daily-rate="500">Honda Activa 6G - ₹500/day</option>
+                                            <option value="TVS Ntorq" data-daily-rate="500">TVS Ntorq - ₹500/day</option>
+                                            <option value="TVS Jupiter" data-daily-rate="500">TVS Jupiter - ₹500/day</option>
+                                            <option value="Hero Xoom" data-daily-rate="500">Hero Xoom - ₹500/day</option>
+                                            <option value="Honda Dio" data-daily-rate="800">Honda Dio - ₹800/day</option>
+                                            <option value="Hero Destiny" data-daily-rate="800">Hero Destiny - ₹800/day</option>
+                                            <option value="Hero Xoom 125" data-daily-rate="800">Hero Xoom 125 - ₹800/day</option>
+                                        </optgroup>
+                                        <optgroup label="Bikes">
+                                            <option value="Hero Glamour" data-daily-rate="800">Hero Glamour - ₹800/day</option>
+                                            <option value="TVS Apache" data-daily-rate="1000">TVS Apache - ₹1000/day</option>
+                                            <option value="Bajaj Avenger" data-daily-rate="1000">Bajaj Avenger - ₹1000/day</option>
+                                            <option value="Royal Enfield Bullet" data-daily-rate="1200">Royal Enfield Bullet - ₹1200/day</option>
+                                            <option value="Jawa Classic" data-daily-rate="1200">Jawa Classic - ₹1200/day</option>
+                                            <option value="Royal Enfield Himalayan" data-daily-rate="1200">Royal Enfield Himalayan - ₹1200/day</option>
+                                        </optgroup>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please select a bike type.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="idProofType" class="form-label">ID Proof Type *</label>
+                                    <select class="form-select" id="idProofType" required>
+                                        <option value="" selected disabled>Select ID Proof</option>
+                                        <option value="Aadhaar">Aadhaar Card</option>
+                                        <option value="Passport">Passport</option>
+                                        <option value="Voter ID">Voter ID</option>
+                                        <option value="Driving License">Driving License</option>
+                                        <option value="PAN Card">PAN Card</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please select an ID proof type.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="idProofNumber" class="form-label">ID Proof Number *</label>
+                                    <input type="text" class="form-control" id="idProofNumber" required>
+                                    <div class="invalid-feedback">
+                                        Please provide your ID proof number.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="dateOfBirth" class="form-label">Date of Birth *</label>
+                                    <input type="date" class="form-control" id="dateOfBirth" required>
+                                    <div class="invalid-feedback">
+                                        Please provide your date of birth.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Helmet Required? *</label>
+                                    <div class="mt-2">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="helmet" id="helmetYes" value="yes" required>
+                                            <label class="form-check-label" for="helmetYes">Yes</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="helmet" id="helmetNo" value="no" required>
+                                            <label class="form-check-label" for="helmetNo">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Please select if you need a helmet.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group form-check">
+                            <input class="form-check-input" type="checkbox" id="termsAgreement" required>
+                            <label class="form-check-label" for="termsAgreement">
+                                I agree to the <a href="terms.html" target="_blank">Terms and Conditions</a> *
+                            </label>
+                            <div class="invalid-feedback">
+                                You must agree before submitting.
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg">Proceed to Payment</button>
+                        </div>
+                    </form>
+                    
+                    <!-- Payment Section -->
+                    <div class="payment-section" id="paymentSection">
+                        <h3 class="text-center mb-4">Complete Your Payment</h3>
+                        
+                        <div class="summary-card">
+                            <h5>Booking Summary</h5>
+                            <div class="summary-item">
+                                <span>Bike Type:</span>
+                                <span id="summaryBikeType">-</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Rental Duration:</span>
+                                <span id="summaryDuration">-</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Daily Rental Cost:</span>
+                                <span id="summaryDailyCost">₹0</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Security Deposit:</span>
+                                <span>₹1000</span>
+                            </div>
+                            <div class="summary-item summary-total">
+                                <span>Total Amount:</span>
+                                <span id="summaryTotal">₹1000</span>
+                            </div>
+                        </div>
+                        
+                        <div class="qr-payment-container">
+                            <h4>Scan to Pay</h4>
+                            <div class="qr-code">
+                                <!-- In a real implementation, this would be a dynamic QR code -->
+                              <div class="d-flex justify-content-center align-items-center text-center" style="height: 200px;">
+  <img src="payment scanner.png" alt="QR Code for payment" class="img-fluid" style="max-width: 188px;">
+</div>
+
+                            </div>
+                            <div class="payment-amount" id="paymentAmount">₹1000</div>
+                            <p class="text-muted">Scan this QR code with any UPI app to complete your payment</p>
+                        </div>
+                        
+                        <div class="payment-instructions">
+                            <h6><i class="fas fa-info-circle me-2"></i>Payment Instructions:</h6>
+                            <ol>
+                                <li>Open any UPI app on your phone (Google Pay, PhonePe, Paytm, etc.)</li>
+                                <li>Tap on "Scan QR Code"</li>
+                                <li>Scan the QR code shown above</li>
+                                <li>Enter the amount shown and complete the payment</li>
+                                <li>After successful payment, note down the UTR number</li>
+                                <li>Enter the UTR number in the field below and confirm payment</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="utrNumber" class="form-label">UTR Number *</label>
+                            <input type="text" class="form-control" id="utrNumber" placeholder="Enter UTR number from your payment" required>
+                            <div class="invalid-feedback">
+                                Please provide the UTR number from your payment.
+                            </div>
+                            <small class="form-text text-muted">
+                                UTR (Unique Transaction Reference) number is provided after successful payment
+                            </small>
+                        </div>
+                        
+                        <div class="text-center mt-4">
+                            <button type="button" class="btn btn-primary btn-lg" id="confirmPayment">
+                                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                Confirm Payment
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary btn-lg ms-2" id="backToForm">Back to Form</button>
                         </div>
                     </div>
                 </div>
@@ -561,6 +990,277 @@
         </div>
     </footer>
 
+   <a href="https://wa.me/917276726689" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
+</a>
+
+
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   <script>
+    // Google Apps Script Web App URL - REPLACE WITH YOUR ACTUAL URL
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby7zkLj9mOcy_bme6ohsRu1usdFgkGoUM2xfEFoC15MltnzbKkQ-jes6cbUh8-7yDhn/exec';
+    
+    // Debug function to test connection
+    async function testGoogleScriptConnection() {
+        try {
+            const response = await fetch(GOOGLE_SCRIPT_URL, {
+                method: 'GET',
+                mode: 'cors'
+            });
+            const result = await response.json();
+            console.log('Connection test result:', result);
+            return true;
+        } catch (error) {
+            console.error('Connection test failed:', error);
+            return false;
+        }
+    }
+    
+    // Calculate rental duration
+    function calculateRentalDuration() {
+        const pickupDate = document.getElementById('pickupDate').value;
+        const dropoffDate = document.getElementById('dropoffDate').value;
+        
+        if (pickupDate && dropoffDate) {
+            const pickup = new Date(pickupDate);
+            const dropoff = new Date(dropoffDate);
+            
+            if (dropoff > pickup) {
+                const diffTime = Math.abs(dropoff - pickup);
+                const diffHours = Math.ceil(diffTime / (1000 * 60 * 60));
+                const diffDays = Math.floor(diffHours / 24);
+                const remainingHours = diffHours % 24;
+                
+                let durationText = '';
+                if (diffDays > 0) {
+                    durationText = `${diffDays} day${diffDays > 1 ? 's' : ''}`;
+                    if (remainingHours > 0) {
+                        durationText += ` ${remainingHours} hour${remainingHours > 1 ? 's' : ''}`;
+                    }
+                } else {
+                    durationText = `${diffHours} hour${diffHours > 1 ? 's' : ''}`;
+                }
+                
+                document.getElementById('rentalDuration').value = durationText;
+            } else {
+                document.getElementById('rentalDuration').value = 'Invalid dates';
+            }
+        }
+    }
+    
+    // Calculate fixed daily rental cost
+    function calculateFixedRentalCost() {
+        const bikeType = document.getElementById('bikeType');
+        const selectedOption = bikeType.options[bikeType.selectedIndex];
+        
+        if (selectedOption && selectedOption.value) {
+            const dailyRate = selectedOption.getAttribute('data-daily-rate');
+            if (dailyRate) {
+                const rentalCost = parseInt(dailyRate);
+                document.getElementById('summaryDailyCost').textContent = `₹${rentalCost}`;
+                const totalAmount = rentalCost + 1000;
+                document.getElementById('summaryTotal').textContent = `₹${totalAmount}`;
+                document.getElementById('paymentAmount').textContent = `₹${totalAmount}`;
+            }
+        }
+    }
+    
+    // Update summary when bike type changes
+    function updateSummary() {
+        const bikeType = document.getElementById('bikeType').value;
+        const duration = document.getElementById('rentalDuration').value;
+        
+        if (bikeType) {
+            document.getElementById('summaryBikeType').textContent = bikeType;
+        }
+        
+        if (duration) {
+            document.getElementById('summaryDuration').textContent = duration;
+        }
+        
+        calculateFixedRentalCost();
+    }
+    
+    // Send data to Google Sheets with better error handling
+    async function sendToGoogleSheets(formData) {
+        try {
+            console.log('Sending data to Google Sheets:', formData);
+            
+            const response = await fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const result = await response.json();
+            console.log('Google Sheets response:', result);
+            
+            return result.result === 'success';
+            
+        } catch (error) {
+            console.error('Error sending data to Google Sheets:', error);
+            
+            // Fallback: Try with no-cors mode
+            try {
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                console.log('Data sent with no-cors mode (response not readable)');
+                return true; // Assume success since we can't read response
+            } catch (noCorsError) {
+                console.error('No-cors mode also failed:', noCorsError);
+                return false;
+            }
+        }
+    }
+    
+    // Collect form data
+    function collectFormData() {
+        const bikeType = document.getElementById('bikeType');
+        const selectedOption = bikeType.options[bikeType.selectedIndex];
+        const dailyRate = selectedOption ? selectedOption.getAttribute('data-daily-rate') : '0';
+        const helmetRadio = document.querySelector('input[name="helmet"]:checked');
+        
+        return {
+            timestamp: new Date().toISOString(),
+            fullName: document.getElementById('fullName').value,
+            mobileNumber: document.getElementById('mobileNumber').value,
+            emailAddress: document.getElementById('emailAddress').value,
+            address: document.getElementById('address').value,
+            pickupDate: document.getElementById('pickupDate').value,
+            dropoffDate: document.getElementById('dropoffDate').value,
+            rentalDuration: document.getElementById('rentalDuration').value,
+            bikeType: document.getElementById('bikeType').value,
+            dailyRate: dailyRate,
+            totalAmount: parseInt(dailyRate) + 1000,
+            idProofType: document.getElementById('idProofType').value,
+            idProofNumber: document.getElementById('idProofNumber').value,
+            dateOfBirth: document.getElementById('dateOfBirth').value,
+            helmetRequired: helmetRadio ? helmetRadio.value : 'no',
+            utrNumber: document.getElementById('utrNumber').value,
+            status: 'Pending'
+        };
+    }
+
+    // Event listeners
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('Page loaded, testing Google Script connection...');
+        
+        // Test connection on page load
+        testGoogleScriptConnection().then(success => {
+            if (success) {
+                console.log('✅ Google Script connection successful');
+            } else {
+                console.log('❌ Google Script connection failed');
+            }
+        });
+        
+        // Calculate rental duration when dates change
+        document.getElementById('pickupDate').addEventListener('change', calculateRentalDuration);
+        document.getElementById('dropoffDate').addEventListener('change', calculateRentalDuration);
+        
+        // Update summary when bike type changes
+        document.getElementById('bikeType').addEventListener('change', updateSummary);
+        
+        // Form validation
+        const form = document.getElementById('bookingForm');
+        form.addEventListener('submit', function(event) {
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            } else {
+                event.preventDefault();
+                document.getElementById('paymentSection').style.display = 'block';
+                updateSummary();
+                document.getElementById('paymentSection').scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            form.classList.add('was-validated');
+        }, false);
+        
+        // Back to form button
+        document.getElementById('backToForm').addEventListener('click', function() {
+            document.getElementById('paymentSection').style.display = 'none';
+            document.getElementById('bookingForm').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        // Confirm payment button
+        document.getElementById('confirmPayment').addEventListener('click', async function() {
+            const utrNumber = document.getElementById('utrNumber');
+            const confirmBtn = this;
+            const spinner = confirmBtn.querySelector('.spinner-border');
+            
+            if (!utrNumber.value) {
+                utrNumber.classList.add('is-invalid');
+                return;
+            } else {
+                utrNumber.classList.remove('is-invalid');
+            }
+            
+            // Show loading spinner
+            confirmBtn.disabled = true;
+            spinner.classList.remove('d-none');
+            
+            try {
+                // Collect form data
+                const formData = collectFormData();
+                console.log('Form data collected:', formData);
+                
+                // Send data to Google Sheets
+                const success = await sendToGoogleSheets(formData);
+                
+                if (success) {
+                    alert('✅ Payment successful! Your booking has been confirmed and data saved to Google Sheets.');
+                    // Reset form
+                    document.getElementById('bookingForm').reset();
+                    document.getElementById('paymentSection').style.display = 'none';
+                    document.getElementById('rentalDuration').value = '';
+                    document.getElementById('bookingForm').classList.remove('was-validated');
+                    window.scrollTo(0, 0);
+                } else {
+                    alert('⚠️ Payment confirmed but there was an issue saving your data. Please contact support with your UTR number: ' + formData.utrNumber);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('❌ An error occurred: ' + error.message);
+            } finally {
+                // Hide loading spinner
+                confirmBtn.disabled = false;
+                spinner.classList.add('d-none');
+            }
+        });
+        
+        // Age verification
+        document.getElementById('dateOfBirth').addEventListener('change', function() {
+            const dob = new Date(this.value);
+            const today = new Date();
+            const age = today.getFullYear() - dob.getFullYear();
+            const monthDiff = today.getMonth() - dob.getMonth();
+            
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+                age--;
+            }
+            
+            if (age < 18) {
+                this.setCustomValidity('You must be at least 18 years old to rent a bike.');
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+    });
+</script>
 </body>
 </html>

@@ -17,8 +17,27 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"
     />
     <style>
+      .whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+}
+
+.whatsapp-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-icon:hover {
+  transform: scale(1.1);
+}
+
       :root {
-        --primary-color: #FCC802;
+        --primary-color: #fcc802;
         --secondary-color: #1a1a1a;
         --light-color: #f8f9fa;
       }
@@ -78,19 +97,76 @@
 
       /* Hero Section */
       .hero {
-        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-          url("https://creativegenes.in/wp-content/uploads/2021/04/20210328_0910201.jpg?w=1024");
-        background-size: cover;
-        background-position: center;
+        position: relative;
         height: 100vh;
         display: flex;
         align-items: center;
         color: white;
         margin-top: 76px;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        animation: changeBg 20s infinite;
+        z-index: -1;
+      }
+
+      /* Overlay for dark effect */
+      .hero::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+        z-index: -1;
+      }
+
+      /* Background change animation */
+      @keyframes changeBg {
+        0% {
+          background-image: url("images/Slideimg1.jpg");
+        }
+        12.5% {
+          background-image: url("images/Slide/6.jpg");
+        }
+        25% {
+          background-image: url("images/Slide/7.jpg");
+        }
+        37.5% {
+          background-image: url("images/Slideimg2.jpg");
+        }
+        /* 50% {
+          background-image: url("images/Slide/1.jpg");
+        } */
+        62.5% {
+          background-image: url("images/Slide/2.avif");
+        }
+        75% {
+          background-image: url("images/Slide/3.jpg");
+        }
+        87.5% {
+          background-image: url("images/Slide/4.jpg");
+        }
+        100% {
+          background-image: url("images/Slide/5.jpg"); /* loops back to start */
+        }
       }
 
       .hero-content {
         max-width: 800px;
+        position: relative; /* keeps content above background */
+        z-index: 1;
       }
 
       .hero h1 {
@@ -118,14 +194,26 @@
         transform: translateY(-2px);
       }
 
-      .btn-outline-light {
-        padding: 12px 30px;
-        font-weight: 500;
-        transition: all 0.3s;
+      /* Booking Form */
+      .booking-form {
+        background-color: var(--primary-color);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        position: relative;
+        z-index: 1;
       }
 
-      .btn-outline-light:hover {
-        background-color: rgba(255, 255, 255, 0.1);
+      .booking-form h3 {
+        color: white;
+        margin-bottom: 20px;
+      }
+
+      .form-control {
+        padding: 12px 15px;
+        border: none;
+        border-radius: 5px;
+        margin-bottom: 15px;
       }
 
       /* Booking Form */
@@ -516,6 +604,12 @@
               <li class="nav-item">
                 <a class="nav-link" href="pricing.html">Bikes</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="gallery.html">Gallery</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="terms.html">Terms</a>
+              </li>
 
               <li class="nav-item">
                 <a class="nav-link" href="contact.html">Contact</a>
@@ -541,64 +635,6 @@
               <div class="hero-buttons">
                 <a href="#" class="btn btn-primary">Book Now</a>
               </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="booking-form">
-              <h3>Book Your Bike</h3>
-              <form>
-                <div class="row">
-                  <div class="col-md-6">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Pick-up Location"
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Drop-off Location"
-                    />
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <input
-                      type="date"
-                      class="form-control"
-                      placeholder="Pick-up Date"
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Your Name"
-                    />
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <input
-                      type="time"
-                      class="form-control"
-                      placeholder="Pick-up Time"
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <select class="form-control">
-                      <option value="">Select Bike Type</option>
-                      <option value="scooter">Scooter</option>
-                      <option value="bike">Bike</option>
-                    </select>
-                  </div>
-                </div>
-                <button type="submit" class="btn btn-light w-100">
-                  Book Now
-                </button>
-              </form>
             </div>
           </div>
         </div>
@@ -765,7 +801,8 @@
           <div class="col-lg-6">
             <div class="about-image">
               <img
-                src="https://content3.jdmagicbox.com/comp/ratnagiri/d4/9999p2352.2352.230214125007.k5d4/catalogue/bikehoppers-bike-rental-ratnagiri-kuwarbav-ratnagiri-bike-on-rent-gvimd00mh3.jpg"
+                src="https://www.trawell.in/admin/images/upload/04372117Ratnagiri_Main1.jpg"
+                ;
               />
             </div>
           </div>
@@ -872,6 +909,13 @@
           </div>
         </div>
       </div>
+      <div class="text-center mt-4">
+        <a
+          href="https://www.google.com/maps/place/Shrinath+Bikes+Rental+Ratnagiri/@16.9907259,73.3055011,17z/data=!4m8!3m7!1s0x3bea0dd1f03db5fd:0x6930afcb03bfce!8m2!3d16.9907259!4d73.308076!9m1!1b1!16s%2Fg%2F11w3mz42vd?hl=en&entry=ttu&g_ep=EgoyMDI1MTAwMS4wIKXMDSoASAFQAw%3D%3D"
+          class="btn btn-primary"
+          >Write Review</a
+        >
+      </div>
     </section>
 
     <!-- Stats Section -->
@@ -971,6 +1015,9 @@
         </div>
       </div>
     </footer>
+<a href="https://wa.me/917276726689" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
+</a>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
     <script>

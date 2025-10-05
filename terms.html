@@ -1,349 +1,376 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Terms & Conditions - Shrinath Bikes Rental</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <style>
-        :root {
-            --primary: #FCC802;
-            --primary-dark: #ffef09;
-            --dark: #1a1a1a;
-            --light: #f8f9fa;
-            --gray: #6c757d;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f5f5f5;
-        }
-        
-        .navbar-brand img {
-            height: 60px;
-        }
-        
-        .nav-link {
-            font-weight: 500;
-            margin: 0 5px;
-            transition: color 0.3s;
-        }
-        
-        .nav-link:hover, .nav-link.active {
-            color: var(--primary) !important;
-        }
-        
-        /* Hero Section */
-        .terms-hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            /* margin-top: 76px; */
-            color: white;
-        }
-        
-        .hero-content {
-            text-align: center;
-            width: 100%;
-        }
-        
-        .hero-content h1 {
-            font-size: 42px;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-        
-        .breadcrumb {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .breadcrumb-item + .breadcrumb-item::before {
-            content: ">";
-            color: rgba(255, 255, 255, 0.8);
-            padding: 0 10px;
-        }
-        
-        .breadcrumb a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .breadcrumb a:hover {
-            color: white;
-        }
-        
-        /* Terms Section */
-        .terms-section {
-            padding: 80px 0;
-        }
-        
+      .whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+}
+
+.whatsapp-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-icon:hover {
+  transform: scale(1.1);
+}
+
+      :root {
+        --primary: #fcc802;
+        --primary-dark: #ffef09;
+        --dark: #1a1a1a;
+        --light: #f8f9fa;
+        --gray: #6c757d;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f5f5f5;
+      }
+
+      .navbar-brand img {
+        height: 60px;
+      }
+
+      .nav-link {
+        font-weight: 500;
+        margin: 0 5px;
+        transition: color 0.3s;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: var(--primary) !important;
+      }
+
+      /* Hero Section */
+      .terms-hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+          url("https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
+        background-size: cover;
+        background-position: center;
+        height: 400px;
+        display: flex;
+        align-items: center;
+        /* margin-top: 76px; */
+        color: white;
+      }
+
+      .hero-content {
+        text-align: center;
+        width: 100%;
+      }
+
+      .hero-content h1 {
+        font-size: 42px;
+        margin-bottom: 10px;
+        font-weight: 700;
+      }
+
+      .breadcrumb {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .breadcrumb-item + .breadcrumb-item::before {
+        content: ">";
+        color: rgba(255, 255, 255, 0.8);
+        padding: 0 10px;
+      }
+
+      .breadcrumb a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .breadcrumb a:hover {
+        color: white;
+      }
+
+      /* Terms Section */
+      .terms-section {
+        padding: 80px 0;
+      }
+
+      .terms-container {
+        background: white;
+        border-radius: 10px;
+        padding: 50px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .terms-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .terms-header h1 {
+        font-size: 36px;
+        color: var(--dark);
+        margin-bottom: 10px;
+      }
+
+      .terms-header p {
+        color: var(--gray);
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .last-updated {
+        background-color: rgba(255, 107, 0, 0.1);
+        padding: 10px 20px;
+        border-radius: 5px;
+        display: inline-block;
+        margin-top: 15px;
+        color: var(--primary);
+        font-weight: 500;
+      }
+
+      .terms-content {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .terms-group {
+        margin-bottom: 40px;
+      }
+
+      .terms-group h2 {
+        font-size: 24px;
+        color: var(--dark);
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #f0f0f0;
+      }
+
+      .term-item {
+        margin-bottom: 25px;
+        padding-left: 30px;
+        position: relative;
+      }
+
+      .term-item:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 8px;
+        width: 12px;
+        height: 12px;
+        background-color: var(--primary);
+        border-radius: 50%;
+      }
+
+      .term-item h3 {
+        font-size: 18px;
+        color: var(--dark);
+        margin-bottom: 8px;
+      }
+
+      .term-item p {
+        color: var(--gray);
+      }
+
+      .important-note {
+        background-color: rgba(255, 107, 0, 0.05);
+        border-left: 4px solid var(--primary);
+        padding: 20px;
+        margin: 30px 0;
+        border-radius: 0 5px 5px 0;
+      }
+
+      .important-note h3 {
+        color: var(--primary);
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+      }
+
+      .important-note h3 i {
+        margin-right: 10px;
+      }
+
+      .agreement-section {
+        background-color: #f9f9f9;
+        padding: 30px;
+        border-radius: 10px;
+        margin-top: 40px;
+        text-align: center;
+      }
+
+      .agreement-section h3 {
+        margin-bottom: 15px;
+        color: var(--dark);
+      }
+
+      .btn-primary {
+        background-color: var(--primary);
+        border-color: var(--primary);
+        padding: 12px 30px;
+        font-weight: 500;
+        transition: all 0.3s;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--primary-dark);
+        border-color: var(--primary-dark);
+        transform: translateY(-2px);
+      }
+
+      .btn-outline-primary {
+        border-color: var(--primary);
+        color: var(--primary);
+        padding: 12px 30px;
+        font-weight: 500;
+        transition: all 0.3s;
+      }
+
+      .btn-outline-primary:hover {
+        background-color: var(--primary);
+        color: white;
+      }
+
+      /* Footer */
+      footer {
+        background-color: var(--dark);
+        color: #aaa;
+        padding: 60px 0 30px;
+      }
+
+      .footer-column h3 {
+        color: white;
+        margin-bottom: 20px;
+        font-size: 20px;
+      }
+
+      .footer-column p {
+        margin-bottom: 20px;
+      }
+
+      .footer-column ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-column ul li {
+        margin-bottom: 10px;
+      }
+
+      .footer-column ul li a {
+        color: #aaa;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-column ul li a:hover {
+        color: var(--primary);
+      }
+
+      .social-links {
+        display: flex;
+        margin-top: 20px;
+      }
+
+      .social-links a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        background-color: #333;
+        color: white;
+        border-radius: 50%;
+        margin-right: 10px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+      }
+
+      .social-links a:hover {
+        background-color: var(--primary);
+      }
+
+      .contact-info-footer li {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 15px;
+      }
+
+      .contact-info-footer i {
+        margin-right: 10px;
+        color: var(--primary);
+        margin-top: 5px;
+      }
+
+      .copyright {
+        text-align: center;
+        padding-top: 30px;
+        margin-top: 30px;
+        border-top: 1px solid #333;
+        font-size: 14px;
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 992px) {
         .terms-container {
-            background: white;
-            border-radius: 10px;
-            padding: 50px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+          padding: 40px 30px;
         }
-        
-        .terms-header {
-            text-align: center;
-            margin-bottom: 40px;
+      }
+
+      @media (max-width: 768px) {
+        .hero-content h1 {
+          font-size: 32px;
         }
-        
+
         .terms-header h1 {
-            font-size: 36px;
-            color: var(--dark);
-            margin-bottom: 10px;
+          font-size: 28px;
         }
-        
-        .terms-header p {
-            color: var(--gray);
-            max-width: 700px;
-            margin: 0 auto;
+
+        .terms-container {
+          padding: 30px 20px;
         }
-        
-        .last-updated {
-            background-color: rgba(255, 107, 0, 0.1);
-            padding: 10px 20px;
-            border-radius: 5px;
-            display: inline-block;
-            margin-top: 15px;
-            color: var(--primary);
-            font-weight: 500;
+      }
+
+      @media (max-width: 576px) {
+        .hero-content h1 {
+          font-size: 28px;
         }
-        
-        .terms-content {
-            max-width: 900px;
-            margin: 0 auto;
+
+        .agreement-section .btn {
+          display: block;
+          width: 100%;
+          margin-bottom: 10px;
         }
-        
-        .terms-group {
-            margin-bottom: 40px;
-        }
-        
-        .terms-group h2 {
-            font-size: 24px;
-            color: var(--dark);
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #f0f0f0;
-        }
-        
-        .term-item {
-            margin-bottom: 25px;
-            padding-left: 30px;
-            position: relative;
-        }
-        
-        .term-item:before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 8px;
-            width: 12px;
-            height: 12px;
-            background-color: var(--primary);
-            border-radius: 50%;
-        }
-        
-        .term-item h3 {
-            font-size: 18px;
-            color: var(--dark);
-            margin-bottom: 8px;
-        }
-        
-        .term-item p {
-            color: var(--gray);
-        }
-        
-        .important-note {
-            background-color: rgba(255, 107, 0, 0.05);
-            border-left: 4px solid var(--primary);
-            padding: 20px;
-            margin: 30px 0;
-            border-radius: 0 5px 5px 0;
-        }
-        
-        .important-note h3 {
-            color: var(--primary);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .important-note h3 i {
-            margin-right: 10px;
-        }
-        
-        .agreement-section {
-            background-color: #f9f9f9;
-            padding: 30px;
-            border-radius: 10px;
-            margin-top: 40px;
-            text-align: center;
-        }
-        
-        .agreement-section h3 {
-            margin-bottom: 15px;
-            color: var(--dark);
-        }
-        
-        .btn-primary {
-            background-color: var(--primary);
-            border-color: var(--primary);
-            padding: 12px 30px;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-        
-        .btn-primary:hover {
-            background-color: var(--primary-dark);
-            border-color: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-        
-        .btn-outline-primary {
-            border-color: var(--primary);
-            color: var(--primary);
-            padding: 12px 30px;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-        
-        .btn-outline-primary:hover {
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: #aaa;
-            padding: 60px 0 30px;
-        }
-        
-        .footer-column h3 {
-            color: white;
-            margin-bottom: 20px;
-            font-size: 20px;
-        }
-        
-        .footer-column p {
-            margin-bottom: 20px;
-        }
-        
-        .footer-column ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .footer-column ul li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-column ul li a {
-            color: #aaa;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-column ul li a:hover {
-            color: var(--primary);
-        }
-        
-        .social-links {
-            display: flex;
-            margin-top: 20px;
-        }
-        
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            background-color: #333;
-            color: white;
-            border-radius: 50%;
-            margin-right: 10px;
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
-        
-        .social-links a:hover {
-            background-color: var(--primary);
-        }
-        
-        .contact-info-footer li {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 15px;
-        }
-        
-        .contact-info-footer i {
-            margin-right: 10px;
-            color: var(--primary);
-            margin-top: 5px;
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            margin-top: 30px;
-            border-top: 1px solid #333;
-            font-size: 14px;
-        }
-        
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .terms-container {
-                padding: 40px 30px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 32px;
-            }
-            
-            .terms-header h1 {
-                font-size: 28px;
-            }
-            
-            .terms-container {
-                padding: 30px 20px;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .hero-content h1 {
-                font-size: 28px;
-            }
-            
-            .agreement-section .btn {
-                display: block;
-                width: 100%;
-                margin-bottom: 10px;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Header -->
     <header>
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-         <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="index.html">
             <img src="images/Log.png" alt="Shrinath Bikes Rental" />
           </a>
           <button
@@ -370,6 +397,11 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="pricing.html">Bikes</a>
+              </li> <li class="nav-item">
+                <a class="nav-link" href="gallery.html">Gallery</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="terms.html">Terms</a>
               </li>
 
               <li class="nav-item">
@@ -383,179 +415,254 @@
 
     <!-- Hero Section -->
     <section class="terms-hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Terms & Conditions</h1>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item active">Terms & Conditions</li>
-                    </ol>
-                </nav>
-            </div>
+      <div class="container">
+        <div class="hero-content">
+          <h1>Terms & Conditions</h1>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+              <li class="breadcrumb-item active">Terms & Conditions</li>
+            </ol>
+          </nav>
         </div>
+      </div>
     </section>
 
     <!-- Terms Section -->
     <section class="terms-section">
-        <div class="container">
-            <div class="terms-container">
-                <div class="terms-header">
-                    <h1>Terms and Conditions of Rental</h1>
-                    <p>Please read these terms and conditions carefully before renting a bike from Shrinath Bikes Rental. By renting our vehicles, you agree to abide by these terms.</p>
-                    <div class="last-updated">Last updated: September 2023</div>
-                </div>
-                
-                <div class="terms-content">
-                    <div class="terms-group">
-                        <h2>Rental Requirements</h2>
-                        
-                        <div class="term-item">
-                            <h3>Valid Driving License</h3>
-                            <p>Customer cannot drive the vehicle without a valid license. The license must be presented at the time of rental, and only then will the vehicle be handed over.</p>
-                        </div>
-                        
-                        <div class="term-item">
-                            <h3>Sober Driving</h3>
-                            <p>No tripsy and drunk driving allowed. We reserve the right to refuse rental to anyone who appears intoxicated or unfit to drive.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="terms-group">
-                        <h2>Vehicle Usage & Limitations</h2>
-                        
-                        <div class="term-item">
-                            <h3>Mileage Limit</h3>
-                            <p>Vehicle should be run only 100Km per day. If it goes beyond this limit, extra charges will be applicable at the rate of ₹10 per additional kilometer.</p>
-                        </div>
-                        
-                        <div class="term-item">
-                            <h3>Terrain Restrictions</h3>
-                            <p>If customer takes the vehicle to water or mountain side, the responsibility will be of the customer. Any damage caused by such usage will be borne by the renter.</p>
-                        </div>
-                        
-                        <div class="term-item">
-                            <h3>One-Way Trips</h3>
-                            <p>If the vehicle goes in one way (not returned to the original location), it's the responsibility of the customer to make arrangements for return or pay additional charges.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="terms-group">
-                        <h2>Vehicle Condition & Maintenance</h2>
-                        
-                        <div class="term-item">
-                            <h3>Fuel Policy</h3>
-                            <p>When the customer takes the vehicle, they must check the fuel level. At the time of returning the vehicle, the same level of fuel must be maintained.</p>
-                        </div>
-                        
-                        <div class="term-item">
-                            <h3>Puncture Responsibility</h3>
-                            <p>If the vehicle gets a puncture, it should be repaired immediately. The cost of puncture repair will be borne by the customer.</p>
-                        </div>
-                        
-                        <div class="term-item">
-                            <h3>Inspection Period</h3>
-                            <p>When the vehicle is taken, if any problems arise after 30 minutes, it will be the responsibility of the customer to address them.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="terms-group">
-                        <h2>Damage & Liability</h2>
-                        
-                        <div class="term-item">
-                            <h3>Physical Damage</h3>
-                            <p>Anything related to physical damage to the vehicle is the responsibility of the owner, but if anything happens due to customer negligence, it becomes the responsibility of the customer.</p>
-                        </div>
-                        
-                        <div class="term-item">
-                            <h3>Traffic Violations</h3>
-                            <p>If police issue any fines during the rental period, the customer needs to clear the police fines as well as pay any owner charges associated with the violation.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="terms-group">
-                        <h2>Return Policy</h2>
-                        
-                        <div class="term-item">
-                            <h3>Timely Return</h3>
-                            <p>Vehicle must be returned at the agreed-upon time. Late returns will incur additional charges. The security deposit will be refunded only upon timely return of the vehicle in good condition.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="important-note">
-                        <h3><i class="fas fa-exclamation-circle"></i> Important Note</h3>
-                        <p>By renting a vehicle from Shrinath Bikes Rental, you acknowledge that you have read, understood, and agree to abide by all these terms and conditions. Failure to comply may result in additional charges, deposit forfeiture, or legal action.</p>
-                    </div>
-                    
-                    <div class="agreement-section">
-                        <h3>Need to rent a bike?</h3>
-                        <p>Make sure you understand and agree to our terms before proceeding with your rental.</p>
-                        <a href="pricing.html" class="btn btn-primary">View Our Bikes & Pricing</a>
-                        <a href="contact.html" class="btn btn-outline-primary">Contact Us for Questions</a>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="terms-container">
+          <div class="terms-header">
+            <h1>Terms and Conditions of Rental</h1>
+            <p>
+              Please read these terms and conditions carefully before renting a
+              bike from Shrinath Bikes Rental. By renting our vehicles, you
+              agree to abide by these terms.
+            </p>
+            <div class="last-updated">Last updated: September 2023</div>
+          </div>
+
+          <div class="terms-content">
+            <div class="terms-group">
+              <h2>Rental Requirements</h2>
+
+              <div class="term-item">
+                <h3>Valid Driving License</h3>
+                <p>
+                  Customer cannot drive the vehicle without a valid license. The
+                  license must be presented at the time of rental, and only then
+                  will the vehicle be handed over.
+                </p>
+              </div>
+
+              <div class="term-item">
+                <h3>Sober Driving</h3>
+                <p>
+                  No tripsy and drunk driving allowed. We reserve the right to
+                  refuse rental to anyone who appears intoxicated or unfit to
+                  drive.
+                </p>
+              </div>
+              <div class="term-item">
+                <h3>Helmet Policy</h3>
+                <p>
+                 A helmet is provided with each rental for safety. If the helmet is lost, stolen, or damaged, the security deposit will not be refunded.
+                </p>
+              </div>
             </div>
+
+            <div class="terms-group">
+              <h2>Vehicle Usage & Limitations</h2>
+
+              <div class="term-item">
+                <h3>Mileage Limit</h3>
+                <p>
+                  Vehicle should be run only 100Km per day. If it goes beyond
+                  this limit, extra charges will be applicable at the rate of
+                  ₹10 per additional kilometer.
+                </p>
+              </div>
+
+              <div class="term-item">
+                <h3>Terrain Restrictions</h3>
+                <p>
+                  If customer takes the vehicle to water or mountain side, the
+                  responsibility will be of the customer. Any damage caused by
+                  such usage will be borne by the renter.
+                </p>
+              </div>
+
+              <div class="term-item">
+                <h3>One-Way Trips</h3>
+                <p>
+                  If the vehicle goes in one way (not returned to the original
+                  location), it's the responsibility of the customer to make
+                  arrangements for return or pay additional charges.
+                </p>
+              </div>
+            </div>
+
+            <div class="terms-group">
+              <h2>Vehicle Condition & Maintenance</h2>
+
+              <div class="term-item">
+                <h3>Fuel Policy</h3>
+                <p>
+                  When the customer takes the vehicle, they must check the fuel
+                  level. At the time of returning the vehicle, the same level of
+                  fuel must be maintained.
+                </p>
+              </div>
+
+              <div class="term-item">
+                <h3>Puncture Responsibility</h3>
+                <p>
+                  If the vehicle gets a puncture, it should be repaired
+                  immediately. The cost of puncture repair will be borne by the
+                  customer.
+                </p>
+              </div>
+
+              <div class="term-item">
+                <h3>Inspection Period</h3>
+                <p>
+                  When the vehicle is taken, if any problems arise after 30
+                  minutes, it will be the responsibility of the customer to
+                  address them.
+                </p>
+              </div>
+            </div>
+
+            <div class="terms-group">
+              <h2>Damage & Liability</h2>
+
+              <div class="term-item">
+                <h3>Physical Damage</h3>
+                <p>
+                  Anything related to physical damage to the vehicle is the
+                  responsibility of the owner, but if anything happens due to
+                  customer negligence, it becomes the responsibility of the
+                  customer.
+                </p>
+              </div>
+
+              <div class="term-item">
+                <h3>Traffic Violations</h3>
+                <p>
+                  If police issue any fines during the rental period, the
+                  customer needs to clear the police fines as well as pay any
+                  owner charges associated with the violation.
+                </p>
+              </div>
+            </div>
+
+            <div class="terms-group">
+              <h2>Return Policy</h2>
+
+              <div class="term-item">
+                <h3>Timely Return</h3>
+                <p>
+                  Vehicle must be returned at the agreed-upon time. Late returns
+                  will incur additional charges. The security deposit will be
+                  refunded only upon timely return of the vehicle in good
+                  condition.
+                </p>
+              </div>
+            </div>
+
+            <div class="important-note">
+              <h3><i class="fas fa-exclamation-circle"></i> Important Note</h3>
+              <p>
+                By renting a vehicle from Shrinath Bikes Rental, you acknowledge
+                that you have read, understood, and agree to abide by all these
+                terms and conditions. Failure to comply may result in additional
+                charges, deposit forfeiture, or legal action.
+              </p>
+            </div>
+
+            <div class="agreement-section">
+              <h3>Need to rent a bike?</h3>
+              <p>
+                Make sure you understand and agree to our terms before
+                proceeding with your rental.
+              </p>
+              <a href="pricing.html" class="btn btn-primary"
+                >View Our Bikes & Pricing</a
+              >
+              <a href="contact.html" class="btn btn-outline-primary"
+                >Contact Us for Questions</a
+              >
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 footer-column">
-                    <h3>Shrinath Bikes</h3>
-                    <p>Your trusted partner for bike rentals in Ratnagiri. We offer a wide range of well-maintained scooters and bikes for your travel needs.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                
-                <div class="col-lg-2 col-md-6 footer-column">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="index.html#about">About Us</a></li>
-                        <li><a href="index.html#services">Services</a></li>
-                        <li><a href="pricing.html">Bikes</a></li>
-                    </ul>
-                </div>
-                
-                <div class="col-lg-3 col-md-6 footer-column">
-                    <h3>Support</h3>
-                    <ul>
-                        <li><a href="terms.html">Terms & Conditions</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                    </ul>
-                </div>
-                
-                <div class="col-lg-3 col-md-6 footer-column">
-                    <h3>Contact Info</h3>
-                    <ul class="contact-info-footer">
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Ratnagiri, Maharashtra, India</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <span>+91 98765 43210</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <span>info@shrinathbikes.com</span>
-                        </li>
-                    </ul>
-                </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 footer-column">
+            <h3>Shrinath Bikes</h3>
+            <p>
+              Your trusted partner for bike rentals in Ratnagiri. We offer a
+              wide range of well-maintained scooters and bikes for your travel
+              needs.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
             </div>
-            
-            <div class="copyright">
-                <p>&copy; 2025 Shrinath Bikes Rental. All rights reserved.</p>
-            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-column">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="index.html#about">About Us</a></li>
+              <li><a href="index.html#services">Services</a></li>
+              <li><a href="pricing.html">Bikes</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-column">
+            <h3>Support</h3>
+            <ul>
+              <li><a href="terms.html">Terms & Conditions</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-column">
+            <h3>Contact Info</h3>
+            <ul class="contact-info-footer">
+              <li>
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Ratnagiri, Maharashtra, India</span>
+              </li>
+              <li>
+                <i class="fas fa-phone"></i>
+                <span>+91 98765 43210</span>
+              </li>
+              <li>
+                <i class="fas fa-envelope"></i>
+                <span>info@shrinathbikes.com</span>
+              </li>
+            </ul>
+          </div>
         </div>
+
+        <div class="copyright">
+          <p>&copy; 2025 Shrinath Bikes Rental. All rights reserved.</p>
+        </div>
+      </div>
     </footer>
+<a href="https://wa.me/917276726689" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
+</a>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+  </body>
 </html>
