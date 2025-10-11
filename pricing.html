@@ -1123,14 +1123,28 @@
   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
 </a>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "j-gh5sehkn5UBGC9W",
+      });
+   })();
+</script>
 
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-   <script>
+ <script>
     // Google Apps Script Web App URL - REPLACE WITH YOUR ACTUAL URL
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby7zkLj9mOcy_bme6ohsRu1usdFgkGoUM2xfEFoC15MltnzbKkQ-jes6cbUh8-7yDhn/exec';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw0NXSp3GM96o-Io42cV8_jskRd1fMoT8xdiZanCAmVPthaSmMnJulC2O5yYjiDkvdLWA/exec';
     
+    // --- EmailJS Configuration (Add these at the top of your JS file) ---
+    const EMAILJS_PUBLIC_KEY = 'j-gh5sehkn5UBGC9W'; //
+    const EMAILJS_SERVICE_ID = 'service_522vwfu';    // e.g., 'bike_rental_service'
+    const EMAILJS_TEMPLATE_ID = 'template_xnlljij';  // e.g., 'bike_rental_confirmation'
+
+
     // Debug function to test connection
     async function testGoogleScriptConnection() {
         try {
@@ -1169,23 +1183,30 @@
                 calculateRentalCost(diffDays);
             } else {
                 document.getElementById('rentalDuration').value = 'Invalid dates';
+                document.getElementById('summaryDailyCost').textContent = '₹0';
+                document.getElementById('summaryTotal').textContent = '₹1000'; // Only security deposit
+                document.getElementById('paymentAmount').textContent = '₹1000';
             }
         }
     }
     
     // Calculate rental cost based on days
     function calculateRentalCost(days) {
-        const bikeType = document.getElementById('bikeType');
-        const selectedOption = bikeType.options[bikeType.selectedIndex];
+        const bikeTypeSelect = document.getElementById('bikeType');
+        const selectedOption = bikeTypeSelect.options[bikeTypeSelect.selectedIndex];
         
         if (selectedOption && selectedOption.value) {
-            const dailyRate = selectedOption.getAttribute('data-daily-rate');
+            const dailyRate = parseInt(selectedOption.getAttribute('data-daily-rate')) || 0;
             if (dailyRate) {
-                const rentalCost = parseInt(dailyRate) * days;
+                const rentalCost = dailyRate * days;
                 document.getElementById('summaryDailyCost').textContent = `₹${rentalCost}`;
-                const totalAmount = rentalCost + 1000;
+                const totalAmount = rentalCost + 1000; // Assuming 1000 is security deposit
                 document.getElementById('summaryTotal').textContent = `₹${totalAmount}`;
                 document.getElementById('paymentAmount').textContent = `₹${totalAmount}`;
+            } else {
+                document.getElementById('summaryDailyCost').textContent = '₹0';
+                document.getElementById('summaryTotal').textContent = '₹1000';
+                document.getElementById('paymentAmount').textContent = '₹1000';
             }
         }
     }
@@ -1204,19 +1225,7 @@
         }
         
         // Recalculate cost based on current duration
-        const pickupDate = document.getElementById('pickupDate').value;
-        const dropoffDate = document.getElementById('dropoffDate').value;
-        
-        if (pickupDate && dropoffDate) {
-            const pickup = new Date(pickupDate);
-            const dropoff = new Date(dropoffDate);
-            
-            if (dropoff >= pickup) {
-                const diffTime = Math.abs(dropoff - pickup);
-                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
-                calculateRentalCost(diffDays);
-            }
-        }
+        calculateRentalDuration(); // This will also call calculateRentalCost
     }
     
     // Send data to Google Sheets with better error handling
@@ -1263,29 +1272,33 @@
         }
     }
     
-    // Collect form data
+    // Collect form data for Google Sheets AND EmailJS
     function collectFormData() {
-        const bikeType = document.getElementById('bikeType');
-        const selectedOption = bikeType.options[bikeType.selectedIndex];
-        const dailyRate = selectedOption ? selectedOption.getAttribute('data-daily-rate') : '0';
+        const bikeTypeSelect = document.getElementById('bikeType');
+        const selectedOption = bikeTypeSelect.options[bikeTypeSelect.selectedIndex];
+        const dailyRate = parseInt(selectedOption ? selectedOption.getAttribute('data-daily-rate') : '0');
         const helmetRadio = document.querySelector('input[name="helmet"]:checked');
         const paymentType = document.querySelector('.payment-option.selected').getAttribute('data-payment-type');
         
-        // Calculate total rental cost
         const pickupDate = document.getElementById('pickupDate').value;
         const dropoffDate = document.getElementById('dropoffDate').value;
-        let totalRentalCost = 0;
         let rentalDays = 0;
+        let totalRentalCost = 0;
         
         if (pickupDate && dropoffDate) {
             const pickup = new Date(pickupDate);
             const dropoff = new Date(dropoffDate);
-            const diffTime = Math.abs(dropoff - pickup);
-            rentalDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
-            totalRentalCost = parseInt(dailyRate) * rentalDays;
+            if (dropoff >= pickup) {
+                const diffTime = Math.abs(dropoff - pickup);
+                rentalDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
+                totalRentalCost = dailyRate * rentalDays;
+            }
         }
+
+        const totalAmountWithDeposit = totalRentalCost + 1000; // Security Deposit
         
         const formData = {
+            // Fields for Google Sheets and EmailJS
             timestamp: new Date().toISOString(),
             fullName: document.getElementById('fullName').value,
             mobileNumber: document.getElementById('mobileNumber').value,
@@ -1295,23 +1308,27 @@
             dropoffDate: document.getElementById('dropoffDate').value,
             rentalDuration: `${rentalDays} day${rentalDays > 1 ? 's' : ''}`,
             bikeType: document.getElementById('bikeType').value,
-            dailyRate: dailyRate,
-            totalAmount: totalRentalCost + 1000,
+            dailyRate: `₹${dailyRate}`, // For sheets and email
+            summaryDailyCost: `₹${totalRentalCost}`, // Total rental cost without deposit for email summary
+            securityDeposit: `₹1000`, // For email summary
+            summaryTotal: `₹${totalAmountWithDeposit}`, // Total amount for email summary
             idProofType: document.getElementById('idProofType').value,
             idProofNumber: document.getElementById('idProofNumber').value,
             dateOfBirth: document.getElementById('dateOfBirth').value,
-            helmetRequired: helmetRadio ? helmetRadio.value : 'no',
-            paymentMethod: paymentType,
-            status: 'Pending'
+            helmetRadio: helmetRadio ? (helmetRadio.value === 'yes' ? 'Yes' : 'No') : 'No', // For email, convert to 'Yes'/'No'
+            paymentMethod: paymentType === 'upi' ? 'UPI' : 'Cash', // For email, capitalized
+            status: 'Pending' // Initial status for sheets
         };
         
         // Add payment-specific fields
         if (paymentType === 'upi') {
             formData.utrNumber = document.getElementById('utrNumber').value;
-            formData.paymentStatus = 'Paid';
+            formData.paymentStatus = 'Paid'; // For sheets
+            // No specific pickupTime for UPI, as it's not present in email template if utrNumber exists
         } else if (paymentType === 'cash') {
             formData.pickupTime = document.getElementById('pickupTime').value;
-            formData.paymentStatus = 'Pending';
+            formData.paymentStatus = 'Pending'; // For sheets
+            // No UTR for cash payment
         }
         
         return formData;
@@ -1372,7 +1389,7 @@
             } else {
                 event.preventDefault();
                 document.getElementById('paymentSection').style.display = 'block';
-                updateSummary();
+                updateSummary(); // Recalculate and update visible summary
                 document.getElementById('paymentSection').scrollIntoView({ behavior: 'smooth' });
             }
             
@@ -1385,78 +1402,125 @@
             document.getElementById('bookingForm').scrollIntoView({ behavior: 'smooth' });
         });
         
-        // Confirm payment button
-        document.getElementById('confirmPayment').addEventListener('click', async function() {
-            const paymentType = document.querySelector('.payment-option.selected').getAttribute('data-payment-type');
-            const confirmBtn = this;
-            const spinner = confirmBtn.querySelector('.spinner-border');
-            
-            // Validate payment-specific fields
-            if (paymentType === 'upi') {
-                const utrNumber = document.getElementById('utrNumber');
-                if (!utrNumber.value) {
-                    utrNumber.classList.add('is-invalid');
-                    return;
-                } else {
-                    utrNumber.classList.remove('is-invalid');
-                }
-            } else if (paymentType === 'cash') {
-                const pickupTime = document.getElementById('pickupTime');
-                if (!pickupTime.value) {
-                    pickupTime.classList.add('is-invalid');
-                    return;
-                } else {
-                    pickupTime.classList.remove('is-invalid');
-                }
-            }
-            
-            // Show loading spinner
-            confirmBtn.disabled = true;
-            spinner.classList.remove('d-none');
-            
-            try {
-                // Collect form data
-                const formData = collectFormData();
-                console.log('Form data collected:', formData);
-                
-                // Send data to Google Sheets
-                const success = await sendToGoogleSheets(formData);
-                
-                if (success) {
-                    if (paymentType === 'upi') {
-                        alert('✅ Payment successful! Your booking has been confirmed and data saved to Google Sheets.');
-                    } else {
-                        alert('✅ Booking confirmed! Please bring the total amount in cash at the time of bike pickup. Your data has been saved to Google Sheets.');
-                    }
-                    
-                    // Reset form
-                    document.getElementById('bookingForm').reset();
-                    document.getElementById('paymentSection').style.display = 'none';
-                    document.getElementById('rentalDuration').value = '';
-                    document.getElementById('bookingForm').classList.remove('was-validated');
-                    window.scrollTo(0, 0);
-                } else {
-                    if (paymentType === 'upi') {
-                        alert('⚠️ Payment confirmed but there was an issue saving your data. Please contact support with your UTR number: ' + formData.utrNumber);
-                    } else {
-                        alert('⚠️ Booking confirmed but there was an issue saving your data. Please contact support with your booking details.');
-                    }
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('❌ An error occurred: ' + error.message);
-            } finally {
-                // Hide loading spinner
-                confirmBtn.disabled = false;
-                spinner.classList.add('d-none');
-            }
-        });
+    // Confirm payment button
+    document.getElementById('confirmPayment').addEventListener('click', async function() {
+        const paymentType = document.querySelector('.payment-option.selected').getAttribute('data-payment-type');
+        const confirmBtn = this;
+        const spinner = confirmBtn.querySelector('.spinner-border');
         
-        // Age verification
+        // Validate payment-specific fields
+        if (paymentType === 'upi') {
+            const utrNumber = document.getElementById('utrNumber');
+            if (!utrNumber.value) {
+                utrNumber.classList.add('is-invalid');
+                alert('Please enter your UTR Number.'); // Specific alert for missing UTR
+                return;
+            } else {
+                utrNumber.classList.remove('is-invalid');
+            }
+        } else if (paymentType === 'cash') {
+            const pickupTime = document.getElementById('pickupTime');
+            if (!pickupTime.value) {
+                pickupTime.classList.add('is-invalid');
+                alert('Please select a pickup time.'); // Specific alert for missing pickup time
+                return;
+            } else {
+                pickupTime.classList.remove('is-invalid');
+            }
+        }
+        
+        // Show loading spinner
+        confirmBtn.disabled = true;
+        spinner.classList.remove('d-none');
+        
+        try {
+            // Collect form data
+            const formData = collectFormData(); // This formData will now be correctly structured for EmailJS
+            console.log('Form data collected:', formData);
+            
+            let sheetsSuccess = false;
+            let emailSuccess = false;
+
+            // --- Step 1: Send data to Google Sheets ---
+            try {
+                sheetsSuccess = await sendToGoogleSheets(formData);
+                if (sheetsSuccess) {
+                    console.log('✅ Data successfully saved to Google Sheets.');
+                } else {
+                    console.error('❌ Failed to save data to Google Sheets.');
+                    alert('⚠️ Booking failed! There was an issue saving your data to our records. Please try again or contact support.');
+                    return; 
+                }
+            } catch (sheetsError) {
+                console.error('❌ Error sending data to Google Sheets:', sheetsError);
+                alert('❌ An unexpected error occurred while saving your booking. Please try again or contact support.');
+                return; 
+            }
+
+            // --- Step 2: Send email using EmailJS (only if Sheets was successful) ---
+            if (sheetsSuccess) {
+                try {
+                    // Send formData directly as template parameters for EmailJS
+                    const emailResponse = await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, formData, EMAILJS_PUBLIC_KEY);
+                    console.log('✅ Email sent successfully!', emailResponse);
+                    emailSuccess = true;
+                } catch (emailError) {
+                    console.error('❌ Error sending confirmation email:', emailError);
+                    alert('⚠️ Your booking was confirmed and saved, but we could not send a confirmation email. Please check your spam folder or contact support.');
+                    emailSuccess = false; 
+                }
+            }
+
+            // --- Final Feedback to User ---
+            if (sheetsSuccess && emailSuccess) {
+                if (paymentType === 'upi') {
+                    alert('✅ Order successful! Your booking has been confirmed and a confirmation email sent. We will contact you soon.');
+                } else {
+                    alert('✅ Booking confirmed! Please bring the total amount in cash at the time of bike pickup. A confirmation email has been sent.');
+                }
+                
+                // Reset form
+                document.getElementById('bookingForm').reset();
+                document.getElementById('paymentSection').style.display = 'none';
+                document.getElementById('rentalDuration').value = '';
+                document.getElementById('bookingForm').classList.remove('was-validated');
+                // Manually clear summary fields if they are not reset by form.reset()
+                document.getElementById('summaryBikeType').textContent = '';
+                document.getElementById('summaryDuration').textContent = '';
+                document.getElementById('summaryDailyCost').textContent = '₹0';
+                document.getElementById('summaryTotal').textContent = '₹1000';
+                document.getElementById('paymentAmount').textContent = '₹1000'; // Reset to default security deposit
+                window.scrollTo(0, 0);
+            } else if (sheetsSuccess && !emailSuccess) {
+                // Booking saved to sheets, but email failed. User already alerted.
+                document.getElementById('bookingForm').reset();
+                document.getElementById('paymentSection').style.display = 'none';
+                document.getElementById('rentalDuration').value = '';
+                document.getElementById('bookingForm').classList.remove('was-validated');
+                document.getElementById('summaryBikeType').textContent = '';
+                document.getElementById('summaryDuration').textContent = '';
+                document.getElementById('summaryDailyCost').textContent = '₹0';
+                document.getElementById('summaryTotal').textContent = '₹1000';
+                document.getElementById('paymentAmount').textContent = '₹1000';
+                window.scrollTo(0, 0);
+            }
+
+        } catch (overallError) {
+            console.error('❌ An unexpected error occurred during the booking process:', overallError);
+            alert('❌ An unhandled error occurred. Please try again or contact support.');
+        } finally {
+            // Hide loading spinner
+            confirmBtn.disabled = false;
+            spinner.classList.add('d-none');
+        }
+    }); 
+    
+    
+    // Age verification
         document.getElementById('dateOfBirth').addEventListener('change', function() {
             const dob = new Date(this.value);
             const today = new Date();
-            const age = today.getFullYear() - dob.getFullYear();
+            let age = today.getFullYear() - dob.getFullYear();
             const monthDiff = today.getMonth() - dob.getMonth();
             
             if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
@@ -1468,7 +1532,11 @@
             } else {
                 this.setCustomValidity('');
             }
+            // Trigger validation to show/hide message immediately
+            this.reportValidity();
         });
+        // Initial call to set default costs
+        calculateRentalDuration();
     });
 </script>
 </body>

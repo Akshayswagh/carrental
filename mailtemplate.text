@@ -1,0 +1,37 @@
+
+        <tr><td><strong>Helmet Required:</strong></td><td style="text-align: right;">{{helmetRadio}}</td></tr>
+        <tr><td><strong>Daily Rental Cost:</strong></td><td style="text-align: right;">{{dailyRate}}</td></tr>
+        <tr><td><strong>Total Rental Cost:</strong></td><td style="text-align: right;">{{summaryDailyCost}}</td></tr>
+        <tr><td><strong>Security Deposit:</strong></td><td style="text-align: right;">{{securityDeposit}}</td></tr>
+        <tr><td><strong>Payment Method:</strong></td><td style="text-align: right;">{{paymentMethod}}</td></tr>
+
+        {{#if utrNumber}}
+        <tr><td><strong>UTR Number:</strong></td><td style="text-align: right;">{{utrNumber}}</td></tr>
+        {{/if}}
+
+        {{#if pickupTime}}
+        <tr><td><strong>Pickup Time:</strong></td><td style="text-align: right;">{{pickupTime}}</td></tr>
+        {{/if}}
+      </table>
+
+      <div style="border-top: 2px solid #333; padding-top: 10px; text-align: right;">
+        <strong>Total Amount: {{summaryTotal}}</strong>
+      </div>
+
+      <p style="margin-top: 25px;"><strong>Important Information:</strong></p>
+      <ul style="padding-left: 20px;">
+        <li>Please arrive on time for your pick-up.</li>
+        <li>Bring your original {{idProofType}} (Number: {{idProofNumber}}) for verification.</li>
+        <li>For cash payments, please bring the total amount at pickup.</li>
+      </ul>
+
+      <p>If you have any questions, contact us anytime.</p>
+      <p>Thank you again!<br><strong>— The GPT Software Bike Rental Team</strong></p>
+    </div>
+  </div>
+
+  <div style="max-width: 600px; margin: auto; text-align: center; color: #999; font-size: 12px; padding-top: 15px;">
+  
+    You received this email because you placed a bike rental order with us.
+  </div>
+</div>
